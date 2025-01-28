@@ -1,15 +1,19 @@
 import React, { useEffect, useRef } from 'react'
-import { Engine, GlobalRegistry } from '@designable/core'
+
 import { DesignerEngineContext } from '../context'
+import { useDesigner } from '../hooks'
+import * as icons from '../icons'
 import { IDesignerProps } from '../types'
 import { GhostWidget } from '../widgets'
-import { useDesigner } from '../hooks'
+import { Engine, GlobalRegistry } from '@designable/core'
+
 import { Layout } from './Layout'
-import * as icons from '../icons'
 
 GlobalRegistry.registerDesignerIcons(icons)
 
-export const Designer: React.FC<IDesignerProps> = (props) => {
+export const Designer: React.FC<React.PropsWithChildren<IDesignerProps>> = (
+  props,
+) => {
   const engine = useDesigner()
   const ref = useRef<Engine>()
   useEffect(() => {
@@ -31,7 +35,7 @@ export const Designer: React.FC<IDesignerProps> = (props) => {
 
   if (engine)
     throw new Error(
-      'There can only be one Designable Engine Context in the React Tree'
+      'There can only be one Designable Engine Context in the React Tree',
     )
 
   return (

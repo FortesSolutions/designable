@@ -1,12 +1,14 @@
 import React from 'react'
-import { usePrefix, IconWidget } from '@designable/react'
-import { useField, Field, observer } from '@formily/react'
-import { Select, Radio, NumberPicker } from '@formily/antd'
+
+import { ColorInput } from '../ColorInput'
 import { FoldItem } from '../FoldItem'
 import { InputItems } from '../InputItems'
 import { SizeInput } from '../SizeInput'
-import { ColorInput } from '../ColorInput'
+import { IconWidget, usePrefix } from '@designable/react'
+import { NumberPicker, Radio, Select } from '@formily/fortes'
+import { Field, observer, useField } from '@formily/react'
 import cls from 'classnames'
+
 export interface IFontStyleSetterProps {
   className?: string
   style?: React.CSSProperties
@@ -164,5 +166,5 @@ export const FontStyleSetter: React.FC<IFontStyleSetterProps> = observer(
         </FoldItem.Extra>
       </FoldItem>
     )
-  }
+  },
 )

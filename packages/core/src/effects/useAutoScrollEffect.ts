@@ -1,11 +1,11 @@
-import { Engine, CursorStatus, Viewport } from '../models'
 import { DragMoveEvent, DragStartEvent, DragStopEvent } from '../events'
+import { CursorStatus, Engine, Viewport } from '../models'
 import {
-  calcAutoScrollBasicInfo,
-  scrollAnimate,
   IAutoScrollBasicInfo,
   IPoint,
   Point,
+  calcAutoScrollBasicInfo,
+  scrollAnimate,
 } from '@designable/shared'
 
 export const useAutoScrollEffect = (engine: Engine) => {
@@ -26,7 +26,7 @@ export const useAutoScrollEffect = (engine: Engine) => {
           viewport.scrollContainer,
           'x',
           xScroller.direction,
-          xScroller.speed
+          xScroller.speed,
         )
       } else {
         if (xScrollerAnimationStop) {
@@ -41,7 +41,7 @@ export const useAutoScrollEffect = (engine: Engine) => {
           viewport.scrollContainer,
           'y',
           yScroller.direction,
-          yScroller.speed
+          yScroller.speed,
         )
       } else {
         if (yScrollerAnimationStop) {

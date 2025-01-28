@@ -1,8 +1,9 @@
 import React from 'react'
-import cls from 'classnames'
+
 import { useDesigner, usePrefix } from '../../hooks'
-import { TreeNode } from '@designable/core'
 import { IconWidget } from '../IconWidget'
+import { TreeNode } from '@designable/core'
+import cls from 'classnames'
 
 export interface ITranslateHandlerProps {
   node: TreeNode

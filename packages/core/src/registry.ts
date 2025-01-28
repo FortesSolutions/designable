@@ -1,21 +1,22 @@
 import { each } from '@designable/shared'
 import { Path } from '@formily/path'
 import { observable } from '@formily/reactive'
-import {
-  IDesignerBehaviorStore,
-  IDesignerIconsStore,
-  IDesignerLocaleStore,
-  IDesignerLanguageStore,
-  IDesignerBehaviors,
-  IDesignerLocales,
-  IDesignerIcons,
-  IBehaviorLike,
-  IBehavior,
-} from './types'
-import { mergeLocales, lowerSnake, getBrowserLanguage } from './internals'
+
 import { isBehaviorHost } from './externals'
-import { TreeNode } from './models'
 import { isBehaviorList } from './externals'
+import { getBrowserLanguage, lowerSnake, mergeLocales } from './internals'
+import { TreeNode } from './models'
+import {
+  IBehavior,
+  IBehaviorLike,
+  IDesignerBehaviorStore,
+  IDesignerBehaviors,
+  IDesignerIcons,
+  IDesignerIconsStore,
+  IDesignerLanguageStore,
+  IDesignerLocaleStore,
+  IDesignerLocales,
+} from './types'
 
 const getISOCode = (language: string) => {
   let isoCode = DESIGNER_LANGUAGE_STORE.value
@@ -68,9 +69,8 @@ const DESIGNER_ICONS_STORE: IDesignerIconsStore = observable.ref({})
 
 const DESIGNER_LOCALES_STORE: IDesignerLocaleStore = observable.ref({})
 
-const DESIGNER_LANGUAGE_STORE: IDesignerLanguageStore = observable.ref(
-  getBrowserLanguage()
-)
+const DESIGNER_LANGUAGE_STORE: IDesignerLanguageStore =
+  observable.ref(getBrowserLanguage())
 
 const DESIGNER_GlobalRegistry = {
   setDesignerLanguage: (lang: string) => {
@@ -87,13 +87,13 @@ const DESIGNER_GlobalRegistry = {
         }
         return buf
       },
-      []
+      [],
     )
   },
 
   getDesignerBehaviors: (node: TreeNode) => {
     return DESIGNER_BEHAVIORS_STORE.value.filter((pattern) =>
-      pattern.selector(node)
+      pattern.selector(node),
     )
   },
 
@@ -112,7 +112,7 @@ const DESIGNER_GlobalRegistry = {
       for (let key in DESIGNER_LOCALES_STORE.value) {
         const message = Path.getIn(
           DESIGNER_LOCALES_STORE.value[key],
-          lowerSnake(token)
+          lowerSnake(token),
         )
         if (message) return message
       }

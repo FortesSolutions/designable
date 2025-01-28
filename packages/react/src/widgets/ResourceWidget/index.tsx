@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-import {
-  isResourceHost,
-  isResourceList,
-  IResourceLike,
-  IResource,
-} from '@designable/core'
-import { isFn } from '@designable/shared'
-import { observer } from '@formily/reactive-react'
+
 import { usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { TextWidget } from '../TextWidget'
+import {
+  IResource,
+  IResourceLike,
+  isResourceHost,
+  isResourceList,
+} from '@designable/core'
+import { isFn } from '@designable/shared'
+import { observer } from '@formily/reactive-react'
 import cls from 'classnames'
+
 import './styles.less'
 
 export type SourceMapper = (resource: IResource) => React.ReactChild
@@ -19,6 +21,7 @@ export interface IResourceWidgetProps {
   title: React.ReactNode
   sources?: IResourceLike[]
   className?: string
+  filter?: string
   defaultExpand?: boolean
   children?: SourceMapper | React.ReactElement
 }
@@ -64,8 +67,18 @@ export const ResourceWidget: React.FC<IResourceWidgetProps> = observer(
       }
       return buf
     }, [])
+    let filteredSources = sources
+    if (props.filter) {
+      filteredSources = filteredSources.filter((source) => {
+        return typeof source.title === 'object'
+          ? Object.values(source.title).some(
+              (title) => title.toLowerCase().indexOf(props.filter) > -1,
+            )
+          : source.icon.toLowerCase().indexOf(props.filter) > -1
+      })
+    }
     const remainItems =
-      sources.reduce((length, source) => {
+      filteredSources.reduce((length, source) => {
         return length + (source.span ?? 1)
       }, 0) % 3
     return (
@@ -91,7 +104,9 @@ export const ResourceWidget: React.FC<IResourceWidgetProps> = observer(
         </div>
         <div className={prefix + '-content-wrapper'}>
           <div className={prefix + '-content'}>
-            {sources.map(isFn(props.children) ? props.children : renderNode)}
+            {filteredSources.map(
+              isFn(props.children) ? props.children : renderNode,
+            )}
             {remainItems ? (
               <div
                 className={prefix + '-item-remain'}
@@ -102,7 +117,7 @@ export const ResourceWidget: React.FC<IResourceWidgetProps> = observer(
         </div>
       </div>
     )
-  }
+  },
 )
 
 ResourceWidget.defaultProps = {

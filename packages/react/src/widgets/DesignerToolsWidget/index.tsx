@@ -1,16 +1,18 @@
 import React, { Fragment, useRef } from 'react'
-import { Button, InputNumber } from 'antd'
-import { observer } from '@formily/reactive-react'
-import { CursorType, ScreenType } from '@designable/core'
+
 import {
   useCursor,
   useHistory,
-  useScreen,
   usePrefix,
+  useScreen,
   useWorkbench,
 } from '../../hooks'
 import { IconWidget } from '../IconWidget'
+import { CursorType, ScreenType } from '@designable/core'
+import { observer } from '@formily/reactive-react'
+import { Button, InputNumber, Segmented, Space } from 'antd'
 import cls from 'classnames'
+
 import './styles.less'
 
 type DesignerToolsType = 'HISTORY' | 'CURSOR' | 'SCREEN_TYPE'
@@ -32,9 +34,8 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
     const renderHistoryController = () => {
       if (!props.use.includes('HISTORY')) return null
       return (
-        <Button.Group size="small" style={{ marginRight: 20 }}>
+        <Button.Group style={{ marginRight: 20 }}>
           <Button
-            size="small"
             disabled={!history?.allowUndo}
             onClick={() => {
               history.undo()
@@ -43,7 +44,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
             <IconWidget infer="Undo" />
           </Button>
           <Button
-            size="small"
             disabled={!history?.allowRedo}
             onClick={() => {
               history.redo()
@@ -59,26 +59,21 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
       if (workbench.type !== 'DESIGNABLE') return null
       if (!props.use.includes('CURSOR')) return null
       return (
-        <Button.Group size="small" style={{ marginRight: 20 }}>
-          <Button
-            size="small"
-            disabled={cursor.type === CursorType.Normal}
-            onClick={() => {
-              cursor.setType(CursorType.Normal)
-            }}
-          >
-            <IconWidget infer="Move" />
-          </Button>
-          <Button
-            size="small"
-            disabled={cursor.type === CursorType.Selection}
-            onClick={() => {
-              cursor.setType(CursorType.Selection)
-            }}
-          >
-            <IconWidget infer="Selection" />
-          </Button>
-        </Button.Group>
+        <Segmented
+          onChange={(cursorType: CursorType) => {
+            cursor.setType(cursorType)
+          }}
+          options={[
+            {
+              value: CursorType.Normal,
+              icon: <IconWidget infer="Move" />,
+            },
+            {
+              value: CursorType.Selection,
+              icon: <IconWidget infer="Selection" />,
+            },
+          ]}
+        />
       )
     }
 
@@ -88,7 +83,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
       return (
         <Fragment>
           <InputNumber
-            size="small"
             value={screen.width}
             style={{ width: 70, textAlign: 'center' }}
             onChange={(value) => {
@@ -105,7 +99,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
           />
           <InputNumber
             value={screen.height}
-            size="small"
             style={{
               width: 70,
               textAlign: 'center',
@@ -120,7 +113,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
           />
           {(screen.width !== '100%' || screen.height !== '100%') && (
             <Button
-              size="small"
               style={{ marginRight: 20 }}
               onClick={() => {
                 screen.resetSize()
@@ -136,35 +128,25 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
     const renderScreenTypeController = () => {
       if (!props.use.includes('SCREEN_TYPE')) return null
       return (
-        <Button.Group size="small" style={{ marginRight: 20 }}>
-          <Button
-            size="small"
-            disabled={screen.type === ScreenType.PC}
-            onClick={() => {
-              screen.setType(ScreenType.PC)
-            }}
-          >
-            <IconWidget infer="PC" />
-          </Button>
-          <Button
-            size="small"
-            disabled={screen.type === ScreenType.Mobile}
-            onClick={() => {
-              screen.setType(ScreenType.Mobile)
-            }}
-          >
-            <IconWidget infer="Mobile" />
-          </Button>
-          <Button
-            size="small"
-            disabled={screen.type === ScreenType.Responsive}
-            onClick={() => {
-              screen.setType(ScreenType.Responsive)
-            }}
-          >
-            <IconWidget infer="Responsive" />
-          </Button>
-        </Button.Group>
+        <Segmented
+          onChange={(screenType: ScreenType) => {
+            screen.setType(screenType)
+          }}
+          options={[
+            {
+              value: ScreenType.PC,
+              icon: <IconWidget infer="PC" />,
+            },
+            {
+              value: ScreenType.Mobile,
+              icon: <IconWidget infer="Mobile" />,
+            },
+            // {
+            //   value: ScreenType.Responsive,
+            //   icon: <IconWidget infer="Responsive" />,
+            // },
+          ]}
+        />
       )
     }
 
@@ -173,8 +155,6 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
       if (screen.type !== ScreenType.Mobile) return
       return (
         <Button
-          size="small"
-          style={{ marginRight: 20 }}
           onClick={() => {
             screen.setFlip(!screen.flip)
           }}
@@ -192,11 +172,13 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
 
     return (
       <div style={props.style} className={cls(prefix, props.className)}>
-        {renderHistoryController()}
-        {renderCursorController()}
-        {renderScreenTypeController()}
-        {renderMobileController()}
-        {renderResponsiveController()}
+        <Space>
+          {renderHistoryController()}
+          {renderCursorController()}
+          {renderScreenTypeController()}
+          {renderMobileController()}
+          {renderResponsiveController()}
+        </Space>
       </div>
     )
   })

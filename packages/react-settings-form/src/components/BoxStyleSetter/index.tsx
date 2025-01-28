@@ -1,9 +1,10 @@
 import React from 'react'
-import { useField, observer } from '@formily/react'
-import { usePrefix, IconWidget } from '@designable/react'
+
 import { FoldItem } from '../FoldItem'
-import { SizeInput } from '../SizeInput'
 import { InputItems } from '../InputItems'
+import { SizeInput } from '../SizeInput'
+import { IconWidget, usePrefix } from '@designable/react'
+import { observer, useField } from '@formily/react'
 import cls from 'classnames'
 
 type Position = 'top' | 'right' | 'left' | 'bottom' | 'all'
@@ -32,7 +33,7 @@ export const BoxStyleSetter: React.FC<IMarginStyleSetterProps> = observer(
     const prefix = usePrefix('box-style-setter')
     const createPositionHandler = (
       position: Position,
-      props: IMarginStyleSetterProps
+      props: IMarginStyleSetterProps,
     ) => {
       const matched = String(props.value).match(BoxRex) || []
       const value = matched[PositionMap[position]]
@@ -47,16 +48,12 @@ export const BoxStyleSetter: React.FC<IMarginStyleSetterProps> = observer(
         onChange(value: string) {
           if (position === 'all') {
             props.onChange?.(
-              `${value || '0px'} ${value || '0px'} ${value || '0px'} ${
-                value || '0px'
-              }`
+              `${value || '0px'} ${value || '0px'} ${value || '0px'} ${value || '0px'}`,
             )
           } else {
             matched[PositionMap[position]] = value
             props.onChange?.(
-              `${matched[1] || '0px'} ${matched[2] || '0px'} ${
-                matched[3] || '0px'
-              } ${matched[4] || '0px'}`
+              `${matched[1] || '0px'} ${matched[2] || '0px'} ${matched[3] || '0px'} ${matched[4] || '0px'}`,
             )
           }
         },
@@ -101,7 +98,7 @@ export const BoxStyleSetter: React.FC<IMarginStyleSetterProps> = observer(
         </FoldItem.Extra>
       </FoldItem>
     )
-  }
+  },
 )
 
 BoxStyleSetter.defaultProps = {

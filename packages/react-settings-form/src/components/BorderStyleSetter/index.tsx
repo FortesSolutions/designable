@@ -1,15 +1,17 @@
 import React, { Fragment, useMemo } from 'react'
-import { usePrefix } from '@designable/react'
-import { camelCase } from '@formily/shared'
-import { Select } from '@formily/antd'
-import { observable } from '@formily/reactive'
-import { Field as FieldType } from '@formily/core'
-import { useField, Field, observer } from '@formily/react'
-import { FoldItem } from '../FoldItem'
+
 import { ColorInput } from '../ColorInput'
-import { SizeInput } from '../SizeInput'
+import { FoldItem } from '../FoldItem'
 import { PositionInput } from '../PositionInput'
+import { SizeInput } from '../SizeInput'
+import { usePrefix } from '@designable/react'
+import { Field as FieldType } from '@formily/core'
+import { Select } from '@formily/fortes'
+import { Field, observer, useField } from '@formily/react'
+import { observable } from '@formily/reactive'
+import { camelCase } from '@formily/shared'
 import cls from 'classnames'
+
 import './styles.less'
 
 const Positions = ['center', 'top', 'right', 'bottom', 'left']
@@ -68,7 +70,7 @@ export const BorderStyleSetter: React.FC<IBorderStyleSetterProps> = observer(
         observable({
           value: parseInitPosition(field),
         }),
-      [field.value]
+      [field.value],
     )
     const prefix = usePrefix('border-style-setter')
     const createReaction = (position: string) => (field: FieldType) => {
@@ -126,5 +128,5 @@ export const BorderStyleSetter: React.FC<IBorderStyleSetterProps> = observer(
         </FoldItem.Extra>
       </FoldItem>
     )
-  }
+  },
 )

@@ -1,4 +1,5 @@
 import { isValidNumber } from './types'
+
 export interface IPoint {
   x: number
   y: number
@@ -66,6 +67,11 @@ export class Rect implements IRect {
 
   get bottom() {
     return this.y + this.height
+  }
+
+  toJSON() {
+    const { x, y, width, height } = this
+    return JSON.stringify({ x, y, width, height })
   }
 }
 
@@ -148,11 +154,11 @@ export function isRectInRect(target: IRect, source: IRect) {
 export function isCrossRectInRect(target: IRect, source: IRect) {
   const targetCenterPoint = new Point(
     target.x + target.width / 2,
-    target.y + target.height / 2
+    target.y + target.height / 2,
   )
   const sourceCenterPoint = new Point(
     source.x + source.width / 2,
-    source.y + source.height / 2
+    source.y + source.height / 2,
   )
   return (
     Math.abs(targetCenterPoint.x - sourceCenterPoint.x) <=
@@ -203,11 +209,11 @@ export function calcQuadrantOfPointToRect(point: IPoint, rect: IRect) {
 export function calcDistanceOfPointToRect(point: IPoint, rect: IRect) {
   let minX = Math.min(
     Math.abs(point.x - rect.x),
-    Math.abs(point.x - (rect.x + rect.width))
+    Math.abs(point.x - (rect.x + rect.width)),
   )
   let minY = Math.min(
     Math.abs(point.y - rect.y),
-    Math.abs(point.y - (rect.y + rect.height))
+    Math.abs(point.y - (rect.y + rect.height)),
   )
   if (point.x >= rect.x && point.x <= rect.x + rect.width) {
     minX = 0
@@ -245,7 +251,7 @@ export function isNearAfter(point: IPoint, rect: IRect, inline = false) {
  */
 export function calcRelativeOfPointToRect(
   point: IPoint,
-  rect: IRect
+  rect: IRect,
 ): IPointToRectRelative {
   const distance = calcDistanceOfPointToRect(point, rect)
   const quadrant = calcQuadrantOfPointToRect(point, rect)
@@ -284,7 +290,7 @@ export function calcRectByStartEndPoint(
   startPoint: IPoint,
   endPoint: IPoint,
   scrollX = 0,
-  scrollY = 0
+  scrollY = 0,
 ) {
   let drawStartX = 0,
     drawStartY = 0
@@ -299,7 +305,7 @@ export function calcRectByStartEndPoint(
       drawStartX - scrollX,
       drawStartY - scrollY,
       Math.abs(endPoint.x - startPoint.x + scrollX),
-      Math.abs(endPoint.y - startPoint.y + scrollY)
+      Math.abs(endPoint.y - startPoint.y + scrollY),
     )
   } else if (
     endPoint.x + scrollX < startPoint.x &&
@@ -312,7 +318,7 @@ export function calcRectByStartEndPoint(
       drawStartX,
       drawStartY,
       Math.abs(endPoint.x - startPoint.x + scrollX),
-      Math.abs(endPoint.y - startPoint.y + scrollY)
+      Math.abs(endPoint.y - startPoint.y + scrollY),
     )
   } else if (
     endPoint.x + scrollX < startPoint.x &&
@@ -325,7 +331,7 @@ export function calcRectByStartEndPoint(
       drawStartX - scrollX,
       drawStartY - scrollY,
       Math.abs(endPoint.x - startPoint.x + scrollX),
-      Math.abs(endPoint.y - startPoint.y + scrollY)
+      Math.abs(endPoint.y - startPoint.y + scrollY),
     )
   } else {
     //2象限
@@ -335,7 +341,7 @@ export function calcRectByStartEndPoint(
       drawStartX,
       drawStartY,
       Math.abs(endPoint.x - startPoint.x + scrollX),
-      Math.abs(endPoint.y - startPoint.y + scrollY)
+      Math.abs(endPoint.y - startPoint.y + scrollY),
     )
   }
 }
@@ -345,29 +351,29 @@ export function calcEdgeLinesOfRect(rect: IRect): IRectEdgeLines {
     v: [
       new LineSegment(
         new Point(rect.x, rect.y),
-        new Point(rect.x, rect.y + rect.height)
+        new Point(rect.x, rect.y + rect.height),
       ),
       new LineSegment(
         new Point(rect.x + rect.width / 2, rect.y),
-        new Point(rect.x + rect.width / 2, rect.y + rect.height)
+        new Point(rect.x + rect.width / 2, rect.y + rect.height),
       ),
       new LineSegment(
         new Point(rect.x + rect.width, rect.y),
-        new Point(rect.x + rect.width, rect.y + rect.height)
+        new Point(rect.x + rect.width, rect.y + rect.height),
       ),
     ],
     h: [
       new LineSegment(
         new Point(rect.x, rect.y),
-        new Point(rect.x + rect.width, rect.y)
+        new Point(rect.x + rect.width, rect.y),
       ),
       new LineSegment(
         new Point(rect.x, rect.y + rect.height / 2),
-        new Point(rect.x + rect.width, rect.y + rect.height / 2)
+        new Point(rect.x + rect.width, rect.y + rect.height / 2),
       ),
       new LineSegment(
         new Point(rect.x, rect.y + rect.height),
-        new Point(rect.x + rect.width, rect.y + rect.height)
+        new Point(rect.x + rect.width, rect.y + rect.height),
       ),
     ],
   }
@@ -380,14 +386,14 @@ export function calcRectOfAxisLineSegment(line: ILineSegment) {
     line.start.x,
     line.start.y,
     isXAxis ? 0 : line.end.x - line.start.x,
-    isXAxis ? line.end.y - line.start.y : 0
+    isXAxis ? line.end.y - line.start.y : 0,
   )
 }
 
 export function calcSpaceBlockOfRect(
   target: IRect,
   source: IRect,
-  type?: string
+  type?: string,
 ) {
   const targetRect = new Rect(target.x, target.y, target.width, target.height)
   const sourceRect = new Rect(source.x, source.y, source.width, source.height)
@@ -444,7 +450,7 @@ export function calcSpaceBlockOfRect(
 
 export function calcExtendsLineSegmentOfRect(
   targetRect: Rect,
-  referRect: Rect
+  referRect: Rect,
 ) {
   if (
     referRect.right < targetRect.right &&
@@ -521,7 +527,7 @@ export function calcExtendsLineSegmentOfRect(
 
 export function calcOffsetOfSnapLineSegmentToEdge(
   line: ILineSegment,
-  current: IRect
+  current: IRect,
 ) {
   const edges = calcEdgeLinesOfRect(current)
   const isVerticalLine = line.start.x === line.end.x
@@ -552,7 +558,7 @@ export function calcOffsetOfSnapLineSegmentToEdge(
 
 export function calcDistanceOfSnapLineToEdges(
   line: ILineSegment,
-  edges: IRectEdgeLines
+  edges: IRectEdgeLines,
 ) {
   let distance = Infinity
   if (line?.start?.y === line?.end?.y) {
@@ -577,36 +583,36 @@ export function calcDistanceOfSnapLineToEdges(
 
 export function calcCombineSnapLineSegment(
   target: ILineSegment,
-  source: ILineSegment
+  source: ILineSegment,
 ): ILineSegment {
   if (target.start.x === target.end.x) {
     return new LineSegment(
       new Point(
         target.start.x,
-        target.start.y > source.start.y ? source.start.y : target.start.y
+        target.start.y > source.start.y ? source.start.y : target.start.y,
       ),
       new Point(
         target.start.x,
-        target.end.y > source.end.y ? target.end.y : source.end.y
-      )
+        target.end.y > source.end.y ? target.end.y : source.end.y,
+      ),
     )
   }
 
   return new LineSegment(
     new Point(
       target.start.x > source.start.x ? source.start.x : target.start.x,
-      target.start.y
+      target.start.y,
     ),
     new Point(
       target.end.x > source.end.x ? target.end.x : source.end.x,
-      target.end.y
-    )
+      target.end.y,
+    ),
   )
 }
 
 export function calcClosestEdges(
   line: ILineSegment,
-  edges: IRectEdgeLines
+  edges: IRectEdgeLines,
 ): [number, ILineSegment] {
   let result: ILineSegment
   let distance = Infinity

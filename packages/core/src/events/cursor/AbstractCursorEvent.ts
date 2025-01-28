@@ -47,7 +47,7 @@ export class AbstractCursorEvent {
         this.data.pageY + frameRect.y - this.data.view.scrollY
       const topElement = document.elementFromPoint(
         this.data.topPageX,
-        this.data.topClientY
+        this.data.topClientY,
       )
       if (topElement !== frameElement) {
         this.data.target = topElement

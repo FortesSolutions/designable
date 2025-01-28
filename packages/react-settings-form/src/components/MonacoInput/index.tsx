@@ -1,15 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react'
-import Editor, { EditorProps, loader } from '@monaco-editor/react'
-import { TextWidget, IconWidget, usePrefix, useTheme } from '@designable/react'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
-import { Tooltip } from 'antd'
-import { parseExpression, parse } from '@babel/parser'
+import React, { useEffect, useRef, useState } from 'react'
+
+import { parse, parseExpression } from '@babel/parser'
+import { IconWidget, TextWidget, usePrefix, useTheme } from '@designable/react'
 import { uid } from '@designable/shared'
-import { format } from './format'
+import Editor, { EditorProps, loader } from '@monaco-editor/react'
+import { Tooltip } from 'antd'
 import cls from 'classnames'
-import './styles.less'
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+
 import './config'
 import { initMonaco } from './config'
+import { format } from './format'
+
+import './styles.less'
 
 export type Monaco = typeof monaco
 export interface MonacoInputProps extends EditorProps {
@@ -76,7 +79,7 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
     extraLibRef.current =
       monacoRef.current.languages.typescript.typescriptDefaults.addExtraLib(
         props.extraLib,
-        `${uidRef.current}.d.ts`
+        `${uidRef.current}.d.ts`,
       )
   }
 
@@ -121,7 +124,7 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
 
   const onMountHandler = (
     editor: monaco.editor.IStandaloneCodeEditor,
-    monaco: Monaco
+    monaco: Monaco,
   ) => {
     editorRef.current = editor
     monacoRef.current = monaco
@@ -176,7 +179,7 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
           monacoRef.current.editor.setModelMarkers(
             editorRef.current.getModel(),
             computedLanguage.current,
-            []
+            [],
           )
           declarationRef.current = editorRef.current.deltaDecorations(
             declarationRef.current,
@@ -185,7 +188,7 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
                 range: new monacoRef.current.Range(1, 1, 1, 1),
                 options: {},
               },
-            ]
+            ],
           )
           submit()
         } catch (e) {
@@ -197,14 +200,14 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
                   e.loc.line,
                   e.loc.column,
                   e.loc.line,
-                  e.loc.column
+                  e.loc.column,
                 ),
                 options: {
                   isWholeLine: true,
                   glyphMarginClassName: 'monaco-error-highline',
                 },
               },
-            ]
+            ],
           )
           monacoRef.current.editor.setModelMarkers(
             editorRef.current.getModel(),
@@ -219,7 +222,7 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
                 endColumn: e.loc.column,
                 message: e.message,
               },
-            ]
+            ],
           )
         }
       }, 240)
@@ -232,7 +235,7 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
             range: new monacoRef.current.Range(1, 1, 1, 1),
             options: {},
           },
-        ]
+        ],
       )
     }
   }
@@ -244,7 +247,7 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
   }
   computedLanguage.current = language || defaultLanguage
   realLanguage.current = /(?:javascript|typescript)/gi.test(
-    computedLanguage.current
+    computedLanguage.current,
   )
     ? 'typescript'
     : computedLanguage.current

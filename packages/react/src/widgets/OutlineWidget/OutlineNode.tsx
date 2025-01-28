@@ -1,25 +1,29 @@
-import React, { useRef, useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
+
 import {
-  TreeNode,
+  useCursor,
+  useDesigner,
+  useMoveHelper,
+  usePrefix,
+  useSelection,
+} from '../../hooks'
+import { IconWidget } from '../IconWidget'
+import { NodeTitleWidget } from '../NodeTitleWidget'
+import {
   ClosestPosition,
   CursorStatus,
   DragMoveEvent,
+  TreeNode,
 } from '@designable/core'
 import { isFn } from '@designable/shared'
 import { autorun } from '@formily/reactive'
 import { observer } from '@formily/reactive-react'
-import {
-  usePrefix,
-  useCursor,
-  useSelection,
-  useMoveHelper,
-  useDesigner,
-} from '../../hooks'
-import { IconWidget } from '../IconWidget'
-import { NodeTitleWidget } from '../NodeTitleWidget'
-import { NodeContext } from './context'
 import cls from 'classnames'
+
+import { NodeContext } from './context'
+
 import './styles.less'
+
 export interface IOutlineTreeNodeProps {
   node: TreeNode
   style?: React.CSSProperties
@@ -194,5 +198,5 @@ export const OutlineTreeNode: React.FC<IOutlineTreeNodeProps> = observer(
         </div>
       </div>
     )
-  }
+  },
 )

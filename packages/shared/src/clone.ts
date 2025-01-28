@@ -1,5 +1,6 @@
 import { isFn } from './types'
 import { instOf } from './instanceof'
+
 type Filter = (value: any, key: string) => boolean
 
 const NATIVE_KEYS = [

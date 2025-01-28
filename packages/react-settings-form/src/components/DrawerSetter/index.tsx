@@ -1,10 +1,12 @@
-import React, { Fragment, useState, useLayoutEffect } from 'react'
+import React, { Fragment, useLayoutEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { observer, useField } from '@formily/react'
-import { FormLayout } from '@formily/antd'
+
 import { IconWidget, usePrefix, useTreeNode } from '@designable/react'
+import { FormLayout } from '@formily/fortes'
+import { observer, useField } from '@formily/react'
 import { Button, ButtonProps } from 'antd'
 import cls from 'classnames'
+
 import './styles.less'
 
 export interface IDrawerSetterProps {
@@ -15,7 +17,7 @@ export interface IDrawerSetterProps {
 export const DrawerSetter: React.FC<IDrawerSetterProps> = observer((props) => {
   const node = useTreeNode()
   const field = useField()
-  const [visible, setVisible] = useState(false)
+  const [open, setVisible] = useState(false)
   const [remove, setRemove] = useState(false)
   const [root, setRoot] = useState<Element>()
   const prefix = usePrefix('drawer-setter')
@@ -28,7 +30,7 @@ export const DrawerSetter: React.FC<IDrawerSetterProps> = observer((props) => {
   }, [node])
 
   const renderDrawer = () => {
-    if (root && visible) {
+    if (root && open) {
       return createPortal(
         <div
           className={cls(prefix, 'animate__animated animate__slideInRight', {
@@ -54,7 +56,7 @@ export const DrawerSetter: React.FC<IDrawerSetterProps> = observer((props) => {
             </FormLayout>
           </div>
         </div>,
-        root
+        root,
       )
     }
     return null

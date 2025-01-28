@@ -1,5 +1,5 @@
-import { EventDriver } from '@designable/shared'
 import { KeyDownEvent, KeyUpEvent } from '../events'
+import { EventDriver } from '@designable/shared'
 
 function filter(event: KeyboardEvent) {
   const target: any = event.target

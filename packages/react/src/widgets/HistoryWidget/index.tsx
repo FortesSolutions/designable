@@ -1,9 +1,11 @@
 import React from 'react'
-import format from 'dateformat'
-import { observer } from '@formily/reactive-react'
+
 import { usePrefix, useWorkbench } from '../../hooks'
 import { TextWidget } from '../TextWidget'
+import { observer } from '@formily/reactive-react'
 import cls from 'classnames'
+import format from 'dateformat'
+
 import './styles.less'
 
 export const HistoryWidget: React.FC = observer(() => {

@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+
+import { IconWidget, usePrefix } from '@designable/react'
 import { Button } from 'antd'
-import { usePrefix, IconWidget } from '@designable/react'
 import cls from 'classnames'
+
 import './styles.less'
 
 export interface IInput {
@@ -39,7 +41,7 @@ const getEventValue = (event: any) => {
 const createTypes = (
   types: PolyTypes,
   exclude: string[],
-  include: string[]
+  include: string[],
 ) => {
   return types.filter(({ type }) => {
     if (Array.isArray(include) && include.length) {
@@ -115,8 +117,8 @@ export function createPolyInput(polyTypes: PolyTypes = []): React.FC<IInput> {
             onChange?.(
               transformOnChangeValue(
                 typesValue.current[nextType?.type],
-                nextType
-              )
+                nextType,
+              ),
             )
           }}
         >

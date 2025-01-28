@@ -1,5 +1,5 @@
-import { Engine, CursorDragType } from '../models'
-import { DragStartEvent, DragMoveEvent, DragStopEvent } from '../events'
+import { DragMoveEvent, DragStartEvent, DragStopEvent } from '../events'
+import { CursorDragType, Engine } from '../models'
 
 export const useTranslateEffect = (engine: Engine) => {
   engine.subscribeTo(DragStartEvent, (event) => {
@@ -13,11 +13,11 @@ export const useTranslateEffect = (engine: Engine) => {
       const type = handler.getAttribute(engine.props.nodeTranslateAttrName)
       if (type) {
         const selectionElement = handler.closest(
-          `*[${engine.props.nodeSelectionIdAttrName}]`
+          `*[${engine.props.nodeSelectionIdAttrName}]`,
         ) as HTMLElement
         if (selectionElement) {
           const nodeId = selectionElement.getAttribute(
-            engine.props.nodeSelectionIdAttrName
+            engine.props.nodeSelectionIdAttrName,
           )
           if (nodeId) {
             const node = engine.findNodeById(nodeId)

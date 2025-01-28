@@ -1,12 +1,14 @@
-import React, { useRef, useLayoutEffect } from 'react'
-import cls from 'classnames'
-import { useTree, usePrefix, useOutline, useWorkbench } from '../../hooks'
-import { observer } from '@formily/reactive-react'
-import { OutlineTreeNode } from './OutlineNode'
-import { Insertion } from './Insertion'
+import React, { useLayoutEffect, useRef } from 'react'
+
+import { useOutline, usePrefix, useTree, useWorkbench } from '../../hooks'
 import { TreeNode, Viewport } from '@designable/core'
-import { NodeContext } from './context'
 import { globalThisPolyfill } from '@designable/shared'
+import { observer } from '@formily/reactive-react'
+import cls from 'classnames'
+
+import { Insertion } from './Insertion'
+import { OutlineTreeNode } from './OutlineNode'
+import { NodeContext } from './context'
 
 export interface IOutlineTreeWidgetProps {
   className?: string
@@ -62,5 +64,5 @@ export const OutlineTreeWidget: React.FC<IOutlineTreeWidgetProps> = observer(
         </div>
       </NodeContext.Provider>
     )
-  }
+  },
 )

@@ -1,5 +1,6 @@
 import { getNpmCDNRegistry } from '../registry'
 import { globalThisPolyfill } from '@designable/shared'
+
 export interface ILoadScriptProps {
   package: string
   entry: string

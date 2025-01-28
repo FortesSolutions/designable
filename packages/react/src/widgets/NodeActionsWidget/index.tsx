@@ -1,10 +1,12 @@
 import React from 'react'
-import { Space, Typography, Divider, TypographyProps } from 'antd'
-import { observer } from '@formily/reactive-react'
-import { usePrefix, useTreeNode, useSelected } from '../../hooks'
+
+import { usePrefix, useSelected, useTreeNode } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { TextWidget } from '../TextWidget'
+import { observer } from '@formily/reactive-react'
+import { Divider, Space, Typography, TypographyProps } from 'antd'
 import cls from 'classnames'
+
 import './styles.less'
 
 export interface INodeActionsWidgetProps {
@@ -22,7 +24,9 @@ export interface INodeActionsWidgetActionProps
   icon?: React.ReactNode
 }
 
-export const NodeActionsWidget: React.FC<INodeActionsWidgetProps> & {
+export const NodeActionsWidget: React.FC<
+  React.PropsWithChildren<INodeActionsWidgetProps>
+> & {
   Action?: React.FC<INodeActionsWidgetActionProps>
 } = observer((props) => {
   const node = useTreeNode()

@@ -1,6 +1,7 @@
-import { Engine } from './Engine'
-import { action, define, observable } from '@formily/reactive'
 import { globalThisPolyfill, isValidNumber } from '@designable/shared'
+import { action, define, observable } from '@formily/reactive'
+
+import { Engine } from './Engine'
 
 export enum CursorStatus {
   Normal = 'NORMAL',
@@ -78,7 +79,7 @@ const setCursorStyle = (contentWindow: Window, style: string) => {
 
 const calcPositionDelta = (
   end: ICursorPosition,
-  start: ICursorPosition
+  start: ICursorPosition,
 ): ICursorPosition => {
   return Object.keys(end || {}).reduce((buf, key) => {
     if (isValidNumber(end?.[key]) && isValidNumber(start?.[key])) {
@@ -140,7 +141,7 @@ export class Cursor {
   get speed() {
     return Math.sqrt(
       Math.pow(this.dragAtomDelta.clientX, 2) +
-        Math.pow(this.dragAtomDelta.clientY, 2)
+        Math.pow(this.dragAtomDelta.clientY, 2),
     )
   }
 
@@ -168,7 +169,7 @@ export class Cursor {
     if (this.status === CursorStatus.Dragging) {
       this.dragStartToCurrentDelta = calcPositionDelta(
         this.position,
-        this.dragStartPosition
+        this.dragStartPosition,
       )
     }
   }
@@ -188,7 +189,7 @@ export class Cursor {
       this.dragEndPosition = { ...position }
       this.dragStartToEndDelta = calcPositionDelta(
         this.dragStartPosition,
-        this.dragEndPosition
+        this.dragEndPosition,
       )
     } else {
       this.dragEndPosition = null

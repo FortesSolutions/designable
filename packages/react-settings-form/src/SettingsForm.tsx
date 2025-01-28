@@ -1,30 +1,35 @@
 import React, { useMemo } from 'react'
-import { createForm } from '@formily/core'
-import { Form } from '@formily/antd'
-import { observer } from '@formily/react'
-import { requestIdle, cancelIdle } from '@designable/shared'
+
 import {
-  usePrefix,
-  useSelected,
-  useOperation,
-  useSelectedNode,
-  useWorkbench,
   IconWidget,
   NodePathWidget,
+  useOperation,
+  usePrefix,
+  useSelected,
+  useSelectedNode,
+  useWorkbench,
 } from '@designable/react'
-import { SchemaField } from './SchemaField'
-import { ISettingFormProps } from './types'
-import { SettingsFormContext } from './shared/context'
-import { useLocales, useSnapshot } from './effects'
+import { cancelIdle, requestIdle } from '@designable/shared'
+import { createForm } from '@formily/core'
+import { Form } from '@formily/fortes'
+import { observer } from '@formily/react'
 import { Empty } from 'antd'
 import cls from 'classnames'
+
+import { SchemaField } from './SchemaField'
+import { useLocales, useSnapshot } from './effects'
+import { SettingsFormContext } from './shared/context'
+import { ISettingFormProps } from './types'
+
 import './styles.less'
 
 const GlobalState = {
   idleRequest: null,
 }
 
-export const SettingsForm: React.FC<ISettingFormProps> = observer(
+export const SettingsForm: React.FC<
+  React.PropsWithChildren<ISettingFormProps>
+> = observer(
   (props) => {
     const workbench = useWorkbench()
     const currentWorkspace =
@@ -103,5 +108,5 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
         timeout: 500,
       })
     },
-  }
+  },
 )

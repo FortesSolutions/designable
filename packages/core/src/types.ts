@@ -1,14 +1,15 @@
-import { IEventProps, Event } from '@designable/shared'
+import { Event, IEventProps } from '@designable/shared'
 import { ISchema } from '@formily/json-schema'
+
 import {
   Engine,
   ITreeNode,
   ScreenType,
   Shortcut,
+  TreeNode,
   Viewport,
   Workbench,
   Workspace,
-  TreeNode,
 } from './models'
 
 export type IEngineProps<T = Event> = IEventProps<T> & {
@@ -39,14 +40,14 @@ export type IEngineContext = {
 export type IResizable = {
   width?: (
     node: TreeNode,
-    element: Element
+    element: Element,
   ) => {
     plus: () => void
     minus: () => void
   }
   height?: (
     node: TreeNode,
-    element: Element
+    element: Element,
   ) => {
     plus: () => void
     minus: () => void
@@ -57,14 +58,14 @@ export type ITranslate = {
   x: (
     node: TreeNode,
     element: HTMLElement,
-    diffX: string | number
+    diffX: string | number,
   ) => {
     translate: () => void
   }
   y: (
     node: TreeNode,
     element: HTMLElement,
-    diffY: string | number
+    diffY: string | number,
   ) => {
     translate: () => void
   }

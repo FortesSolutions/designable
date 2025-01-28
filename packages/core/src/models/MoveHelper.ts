@@ -1,17 +1,18 @@
-import { Operation } from './Operation'
-import { TreeNode } from './TreeNode'
-import { observable, define, action } from '@formily/reactive'
+import { DragNodeEvent, DropNodeEvent } from '../events'
 import {
+  IPoint,
+  Rect,
   calcDistanceOfPointToRect,
   calcDistancePointToEdge,
   isNearAfter,
   isPointInRect,
-  IPoint,
-  Rect,
 } from '@designable/shared'
-import { DragNodeEvent, DropNodeEvent } from '../events'
-import { Viewport } from './Viewport'
+import { action, define, observable } from '@formily/reactive'
+
 import { CursorDragType } from './Cursor'
+import { Operation } from './Operation'
+import { TreeNode } from './TreeNode'
+import { Viewport } from './Viewport'
 
 export enum ClosestPosition {
   Before = 'BEFORE',
@@ -119,7 +120,7 @@ export class MoveHelper {
     const isAfter = isNearAfter(
       point,
       closestRect,
-      viewport.moveInsertionType === 'block' ? false : isInline
+      viewport.moveInsertionType === 'block' ? false : isInline,
     )
     const getValidParent = (node: TreeNode) => {
       if (!node) return
@@ -253,7 +254,7 @@ export class MoveHelper {
 
   calcClosestOffsetRect(
     viewport: Viewport,
-    closestDirection: ClosestPosition
+    closestDirection: ClosestPosition,
   ): Rect {
     const closestNode = this.closestNode
     if (!closestNode || !closestDirection) return
@@ -276,7 +277,7 @@ export class MoveHelper {
         new DragNodeEvent({
           target: this.operation.tree,
           source: this.dragNodes,
-        })
+        }),
       )
       this.viewport.cacheElements()
       this.cursor.setDragType(CursorDragType.Move)
@@ -301,34 +302,34 @@ export class MoveHelper {
     if (this.activeViewport === this.outline) {
       this.outlineClosestDirection = this.calcClosestPosition(
         point,
-        this.outline
+        this.outline,
       )
       this.viewportClosestDirection = this.outlineClosestDirection
     } else {
       this.viewportClosestDirection = this.calcClosestPosition(
         point,
-        this.viewport
+        this.viewport,
       )
       this.outlineClosestDirection = this.viewportClosestDirection
     }
     if (this.outline.mounted) {
       this.outlineClosestRect = this.calcClosestRect(
         this.outline,
-        this.outlineClosestDirection
+        this.outlineClosestDirection,
       )
       this.outlineClosestOffsetRect = this.calcClosestOffsetRect(
         this.outline,
-        this.outlineClosestDirection
+        this.outlineClosestDirection,
       )
     }
     if (this.viewport.mounted) {
       this.viewportClosestRect = this.calcClosestRect(
         this.viewport,
-        this.viewportClosestDirection
+        this.viewportClosestDirection,
       )
       this.viewportClosestOffsetRect = this.calcClosestOffsetRect(
         this.viewport,
-        this.viewportClosestDirection
+        this.viewportClosestDirection,
       )
     }
   }
@@ -338,7 +339,7 @@ export class MoveHelper {
       new DropNodeEvent({
         target: this.operation.tree,
         source: props?.dropNode,
-      })
+      }),
     )
   }
 

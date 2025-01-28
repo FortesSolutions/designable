@@ -1,9 +1,11 @@
-import React, { useRef, useEffect } from 'react'
-import { useCursor, usePrefix, useDesigner } from '../../hooks'
+import React, { useEffect, useRef } from 'react'
+
+import { useCursor, useDesigner, usePrefix } from '../../hooks'
+import { NodeTitleWidget } from '../NodeTitleWidget'
 import { CursorStatus } from '@designable/core'
 import { autorun } from '@formily/reactive'
 import { observer } from '@formily/reactive-react'
-import { NodeTitleWidget } from '../NodeTitleWidget'
+
 import './styles.less'
 
 export const GhostWidget = observer(() => {
@@ -22,7 +24,7 @@ export const GhostWidget = observer(() => {
         if (!ref.current) return
         ref.current.style.transform = transform
       }),
-    [designer, cursor]
+    [designer, cursor],
   )
   const renderNodes = () => {
     return (

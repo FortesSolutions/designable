@@ -1,8 +1,9 @@
-import { observable, define, action } from '@formily/reactive'
-import { Operation } from './Operation'
 import { SelectNodeEvent, UnSelectNodeEvent } from '../events'
+import { isArr, isStr } from '@designable/shared'
+import { action, define, observable } from '@formily/reactive'
+
+import { Operation } from './Operation'
 import { TreeNode } from './TreeNode'
-import { isStr, isArr } from '@designable/shared'
 
 export interface ISelection {
   selected?: string[]
@@ -41,7 +42,7 @@ export class Selection {
       new type({
         target: this.operation.tree,
         source: this.selectedNodes,
-      })
+      }),
     )
   }
 
@@ -127,7 +128,7 @@ export class Selection {
               ? item
               : minDistanceNode
           },
-          selectedNodes[0]
+          selectedNodes[0],
         )
         if (minDistanceNode) {
           const crossNodes = node.crossSiblings(minDistanceNode)

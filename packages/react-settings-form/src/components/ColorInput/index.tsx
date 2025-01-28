@@ -1,7 +1,9 @@
 import React, { useRef } from 'react'
-import { Input, Popover } from 'antd'
-import { usePrefix } from '@designable/react'
 import { SketchPicker } from 'react-color'
+
+import { usePrefix } from '@designable/react'
+import { Input, Popover } from 'antd'
+
 import './styles.less'
 
 export interface IColorInputProps {

@@ -1,6 +1,6 @@
 export const createUniformSpeedAnimation = (
   speed = 10,
-  callback: (delta: number) => void
+  callback: (delta: number) => void,
 ) => {
   let request = null
   let startTime = null

@@ -64,7 +64,7 @@ export default {
       TextAlignJustify: '自适应',
     },
   },
-  'en-US': {
+  'en-GB': {
     icons: {
       Image: 'Image',
       ImageSize: 'Image Size',

@@ -6,11 +6,18 @@ export default {
     reset: '重置',
     publish: '发布',
   },
-  'en-US': {
+  'en-GB': {
     save: 'Save',
     submit: 'Submit',
     cancel: 'Cancel',
     reset: 'Reset',
     publish: 'Publish',
+  },
+  'nl-NL': {
+    save: 'Opslaan',
+    submit: 'Versturen',
+    cancel: 'Annuleren',
+    reset: 'Herstellen',
+    publish: 'Publiceren',
   },
 }

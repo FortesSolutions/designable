@@ -1,5 +1,5 @@
+import { calcSpeedFactor, createUniformSpeedAnimation } from './animation'
 import { IPoint } from './coordinate'
-import { createUniformSpeedAnimation, calcSpeedFactor } from './animation'
 import { isFn, isWindow } from './types'
 
 const MAX_SPEED = 80 // px/s
@@ -16,7 +16,7 @@ export const calcAutoScrollBasicInfo = (
   point: IPoint,
   axis: 'x' | 'y',
   viewport: DOMRect,
-  maxSpeed = MAX_SPEED
+  maxSpeed = MAX_SPEED,
 ): IAutoScrollBasicInfo | null => {
   const { left, right, top, bottom } = viewport
   const { x, y } = point
@@ -59,7 +59,7 @@ export const updateScrollValue = (
   element: HTMLElement | Window,
   axis: 'x' | 'y',
   value: number,
-  callback?: (scrollValue: number) => void
+  callback?: (scrollValue: number) => void,
 ) => {
   if (element) {
     if (!isWindow(element)) {
@@ -100,14 +100,14 @@ export const scrollAnimate = (
   axis: 'x' | 'y',
   direction: 'begin' | 'end',
   speed: number,
-  callback?: (scrollValue: number) => void
+  callback?: (scrollValue: number) => void,
 ) => {
   return createUniformSpeedAnimation(speed, (delta) => {
     updateScrollValue(
       element,
       axis,
       direction === 'begin' ? 0 - delta : delta,
-      callback
+      callback,
     )
   })
 }

@@ -1,6 +1,8 @@
-import * as Core from './exports'
-export * from './exports'
 import { globalThisPolyfill } from '@designable/shared'
+
+import * as Core from './exports'
+
+export * from './exports'
 
 if (globalThisPolyfill?.['Designable']?.['Core']) {
   if (module.exports) {

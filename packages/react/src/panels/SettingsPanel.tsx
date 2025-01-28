@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+
+import { usePrefix, useWorkbench } from '../hooks'
+import { IconWidget, TextWidget } from '../widgets'
 import { requestIdle } from '@designable/shared'
 import { observer } from '@formily/reactive-react'
-import { TextWidget, IconWidget } from '../widgets'
-import { usePrefix, useWorkbench } from '../hooks'
 import cls from 'classnames'
+
 export interface ISettingPanelProps {
   title?: React.ReactNode
   extra?: React.ReactNode
@@ -14,9 +16,9 @@ export const SettingsPanel: React.FC<ISettingPanelProps> = observer((props) => {
   const workbench = useWorkbench()
   const [innerVisible, setInnerVisible] = useState(true)
   const [pinning, setPinning] = useState(false)
-  const [visible, setVisible] = useState(true)
+  const [open, setVisible] = useState(true)
   useEffect(() => {
-    if (visible || workbench.type === 'DESIGNABLE') {
+    if (open || workbench.type === 'DESIGNABLE') {
       if (!innerVisible) {
         requestIdle(() => {
           requestAnimationFrame(() => {
@@ -25,12 +27,12 @@ export const SettingsPanel: React.FC<ISettingPanelProps> = observer((props) => {
         })
       }
     }
-  }, [visible, workbench.type])
+  }, [open, workbench.type])
   if (workbench.type !== 'DESIGNABLE') {
     if (innerVisible) setInnerVisible(false)
     return null
   }
-  if (!visible) {
+  if (!open) {
     if (innerVisible) setInnerVisible(false)
     return (
       <div

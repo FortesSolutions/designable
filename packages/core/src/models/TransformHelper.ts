@@ -1,26 +1,27 @@
 import {
-  Point,
-  IPoint,
-  ISize,
-  calcEdgeLinesOfRect,
-  calcBoundingRect,
-  calcSpaceBlockOfRect,
-  calcElementTranslate,
-  calcDistanceOfSnapLineToEdges,
-  IRect,
-  Rect,
-  isEqualRect,
-  isLineSegment,
   ILineSegment,
+  IPoint,
+  IRect,
+  ISize,
+  Point,
+  Rect,
+  calcBoundingRect,
   calcClosestEdges,
   calcCombineSnapLineSegment,
+  calcDistanceOfSnapLineToEdges,
+  calcEdgeLinesOfRect,
+  calcElementTranslate,
+  calcSpaceBlockOfRect,
+  isEqualRect,
+  isLineSegment,
 } from '@designable/shared'
-import { observable, define, action } from '@formily/reactive'
-import { SpaceBlock, AroundSpaceBlock } from './SpaceBlock'
-import { Operation } from './Operation'
-import { TreeNode } from './TreeNode'
-import { SnapLine, ISnapLine } from './SnapLine'
+import { action, define, observable } from '@formily/reactive'
+
 import { CursorDragType } from './Cursor'
+import { Operation } from './Operation'
+import { ISnapLine, SnapLine } from './SnapLine'
+import { AroundSpaceBlock, SpaceBlock } from './SpaceBlock'
+import { TreeNode } from './TreeNode'
 
 export interface ITransformHelperProps {
   operation: Operation
@@ -111,7 +112,7 @@ export class TransformHelper {
   get cursorPosition() {
     const position = this.cursor.position
     return this.operation.workspace.viewport.getOffsetPoint(
-      new Point(position.clientX, position.clientY)
+      new Point(position.clientX, position.clientY),
     )
   }
 
@@ -121,7 +122,7 @@ export class TransformHelper {
         this.cursorPosition.x - this.dragStartCursorOffset.x,
         this.cursorPosition.y - this.dragStartCursorOffset.y,
         this.dragNodesRect.width,
-        this.dragNodesRect.height
+        this.dragNodesRect.height,
       )
     } else if (this.type === 'resize') {
       const dragNodesRect = this.dragStartNodesRect
@@ -133,56 +134,56 @@ export class TransformHelper {
             this.cursorPosition.x - this.dragStartCursorOffset.x,
             this.cursorPosition.y - this.dragStartCursorOffset.y,
             dragNodesRect.width - deltaX,
-            dragNodesRect.height - deltaY
+            dragNodesRect.height - deltaY,
           )
         case 'left-center':
           return new Rect(
             this.cursorPosition.x - this.dragStartCursorOffset.x,
             dragNodesRect.y,
             dragNodesRect.width - deltaX,
-            dragNodesRect.height
+            dragNodesRect.height,
           )
         case 'left-bottom':
           return new Rect(
             this.cursorPosition.x - this.dragStartCursorOffset.x,
             dragNodesRect.y,
             dragNodesRect.width - deltaX,
-            dragNodesRect.height - deltaY
+            dragNodesRect.height - deltaY,
           )
         case 'center-top':
           return new Rect(
             dragNodesRect.x,
             this.cursorPosition.y - this.dragStartCursorOffset.y,
             dragNodesRect.width,
-            dragNodesRect.height - deltaY
+            dragNodesRect.height - deltaY,
           )
         case 'center-bottom':
           return new Rect(
             dragNodesRect.x,
             dragNodesRect.y,
             dragNodesRect.width,
-            dragNodesRect.height + deltaY
+            dragNodesRect.height + deltaY,
           )
         case 'right-top':
           return new Rect(
             dragNodesRect.x,
             this.cursorPosition.y - this.dragStartCursorOffset.y,
             dragNodesRect.width + deltaX,
-            dragNodesRect.height - deltaY
+            dragNodesRect.height - deltaY,
           )
         case 'right-center':
           return new Rect(
             dragNodesRect.x,
             dragNodesRect.y,
             dragNodesRect.width + deltaX,
-            dragNodesRect.height
+            dragNodesRect.height,
           )
         case 'right-bottom':
           return new Rect(
             dragNodesRect.x,
             dragNodesRect.y,
             dragNodesRect.width + deltaX,
-            dragNodesRect.height - deltaY
+            dragNodesRect.height - deltaY,
           )
       }
     }
@@ -195,7 +196,7 @@ export class TransformHelper {
   get dragNodesRect() {
     if (this.draggingNodesRect) return this.draggingNodesRect
     return calcBoundingRect(
-      this.dragNodes.map((node) => node.getValidElementOffsetRect())
+      this.dragNodes.map((node) => node.getValidElementOffsetRect()),
     )
   }
 
@@ -206,21 +207,21 @@ export class TransformHelper {
   get cursorOffset() {
     return new Point(
       this.cursorPosition.x - this.dragNodesRect.x,
-      this.cursorPosition.y - this.dragNodesRect.y
+      this.cursorPosition.y - this.dragNodesRect.y,
     )
   }
 
   get dragStartCursor() {
     const position = this.operation.engine.cursor.dragStartPosition
     return this.operation.workspace.viewport.getOffsetPoint(
-      new Point(position.clientX, position.clientY)
+      new Point(position.clientX, position.clientY),
     )
   }
 
   get dragStartCursorOffset() {
     return new Point(
       this.dragStartCursor.x - this.dragStartNodesRect.x,
-      this.dragStartCursor.y - this.dragStartNodesRect.y
+      this.dragStartCursor.y - this.dragStartNodesRect.y,
     )
   }
 
@@ -231,14 +232,14 @@ export class TransformHelper {
     this.thresholdSnapLines.forEach((line) => {
       const distance = calcDistanceOfSnapLineToEdges(
         line,
-        cursorDragNodesEdgeLines
+        cursorDragNodesEdgeLines,
       )
       if (distance < TransformHelper.threshold) {
         const existed = results.findIndex(
           (l) =>
             l.distance > distance &&
             l.distance > 0 &&
-            l.direction === line.direction
+            l.direction === line.direction,
         )
         if (existed > -1) {
           results.splice(existed, 1)
@@ -335,56 +336,56 @@ export class TransformHelper {
           dragStartTranslate.x + deltaX,
           dragStartTranslate.y + deltaY,
           dragStartSize.width - deltaX,
-          dragStartSize.height - deltaY
+          dragStartSize.height - deltaY,
         )
       case 'left-center':
         return new Rect(
           dragStartTranslate.x + deltaX,
           dragStartTranslate.y,
           dragStartSize.width - deltaX,
-          dragStartSize.height
+          dragStartSize.height,
         )
       case 'left-bottom':
         return new Rect(
           dragStartTranslate.x + deltaX,
           dragStartTranslate.y,
           dragStartSize.width - deltaX,
-          dragStartSize.height + deltaY
+          dragStartSize.height + deltaY,
         )
       case 'center-bottom':
         return new Rect(
           dragStartTranslate.x,
           dragStartTranslate.y,
           dragStartSize.width,
-          dragStartSize.height + deltaY
+          dragStartSize.height + deltaY,
         )
       case 'center-top':
         return new Rect(
           dragStartTranslate.x,
           dragStartTranslate.y + deltaY,
           dragStartSize.width,
-          dragStartSize.height - deltaY
+          dragStartSize.height - deltaY,
         )
       case 'right-top':
         return new Rect(
           dragStartTranslate.x,
           dragStartTranslate.y + deltaY,
           dragStartSize.width + deltaX,
-          dragStartSize.height - deltaY
+          dragStartSize.height - deltaY,
         )
       case 'right-bottom':
         return new Rect(
           dragStartTranslate.x,
           dragStartTranslate.y,
           dragStartSize.width + deltaX,
-          dragStartSize.height + deltaY
+          dragStartSize.height + deltaY,
         )
       case 'right-center':
         return new Rect(
           dragStartTranslate.x,
           dragStartTranslate.y,
           dragStartSize.width + deltaX,
-          dragStartSize.height
+          dragStartSize.height,
         )
     }
   }
@@ -535,7 +536,7 @@ export class TransformHelper {
 
   removeRulerSnapLine(id: string) {
     const matchedLineIndex = this.rulerSnapLines.findIndex(
-      (item) => item.id === id
+      (item) => item.id === id,
     )
     if (matchedLineIndex > -1) {
       this.rulerSnapLines.splice(matchedLineIndex, 1)

@@ -1,5 +1,5 @@
-import { Engine, CursorStatus } from '../models'
 import { MouseClickEvent } from '../events'
+import { CursorStatus, Engine } from '../models'
 import { KeyCode, Point } from '@designable/shared'
 
 export const useSelectionEffect = (engine: Engine) => {
@@ -11,7 +11,7 @@ export const useSelectionEffect = (engine: Engine) => {
       *[${engine.props.outlineNodeIdAttrName}]
     `)
     const isHelpers = target?.closest?.(
-      `*[${engine.props.nodeSelectionIdAttrName}]`
+      `*[${engine.props.nodeSelectionIdAttrName}]`,
     )
     const currentWorkspace =
       event.context?.workspace ?? engine.workbench.activeWorkspace

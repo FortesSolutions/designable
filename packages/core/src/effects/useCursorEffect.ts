@@ -1,10 +1,10 @@
-import { Engine, CursorStatus } from '../models'
 import {
-  MouseMoveEvent,
-  DragStartEvent,
   DragMoveEvent,
+  DragStartEvent,
   DragStopEvent,
+  MouseMoveEvent,
 } from '../events'
+import { CursorStatus, Engine } from '../models'
 import { requestIdle } from '@designable/shared'
 
 export const useCursorEffect = (engine: Engine) => {
@@ -13,7 +13,7 @@ export const useCursorEffect = (engine: Engine) => {
       engine.cursor.status === CursorStatus.Dragging ||
         engine.cursor.status === CursorStatus.DragStart
         ? engine.cursor.status
-        : CursorStatus.Normal
+        : CursorStatus.Normal,
     )
     if (engine.cursor.status === CursorStatus.Dragging) return
     engine.cursor.setPosition(event.data)

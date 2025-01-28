@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { useField, observer } from '@formily/react'
-import { usePrefix, IconWidget } from '@designable/react'
+
+import { IconWidget, usePrefix } from '@designable/react'
+import { observer, useField } from '@formily/react'
 import cls from 'classnames'
+
 import './styles.less'
 
 export interface ICollapseItemProps {

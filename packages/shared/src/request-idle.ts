@@ -1,4 +1,5 @@
 import 'requestidlecallback'
+
 import { globalThisPolyfill } from './globalThisPolyfill'
 
 export interface IIdleDeadline {
@@ -12,7 +13,7 @@ export interface IdleCallbackOptions {
 
 export const requestIdle = (
   callback: (params: IIdleDeadline) => void,
-  options?: IdleCallbackOptions
+  options?: IdleCallbackOptions,
 ): number => {
   return globalThisPolyfill['requestIdleCallback'](callback, options)
 }

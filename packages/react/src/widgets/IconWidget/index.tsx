@@ -1,16 +1,20 @@
 import React, { createContext, useContext, useEffect, useRef } from 'react'
-import { isStr, isFn, isObj, isPlainObj } from '@designable/shared'
+
+import { usePrefix, useRegistry, useTheme } from '../../hooks'
+import { isFn, isObj, isPlainObj, isStr } from '@designable/shared'
 import { observer } from '@formily/reactive-react'
 import { Tooltip, TooltipProps } from 'antd'
-import { usePrefix, useRegistry, useTheme } from '../../hooks'
 import cls from 'classnames'
+
 import './styles.less'
 
-const IconContext = createContext<IconProviderProps>(null)
+const IconContext =
+  createContext<React.PropsWithChildren<IconProviderProps>>(null)
 
 const isNumSize = (val: any) => /^[\d.]+$/.test(val)
 export interface IconProviderProps {
   tooltip?: boolean
+  // children: Element
 }
 
 export interface IShadowSVGProps {
@@ -19,13 +23,13 @@ export interface IShadowSVGProps {
   height?: number | string
 }
 export interface IIconWidgetProps extends React.HTMLAttributes<HTMLElement> {
-  tooltip?: React.ReactNode | TooltipProps
+  tooltip?: boolean | React.ReactNode | TooltipProps
   infer: React.ReactNode | { shadow: string }
   size?: number | string
 }
 
-export const IconWidget: React.FC<IIconWidgetProps> & {
-  Provider?: React.FC<IconProviderProps>
+export const IconWidget: React.FC<React.PropsWithChildren<IIconWidgetProps>> & {
+  Provider?: React.FC<React.PropsWithChildren<IconProviderProps>>
   ShadowSVG?: React.FC<IShadowSVGProps>
 } = observer((props: React.PropsWithChildren<IIconWidgetProps>) => {
   const theme = useTheme()
@@ -35,7 +39,7 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
   const size = props.size || '1em'
   const height = props.style?.height || size
   const width = props.style?.width || size
-  const takeIcon = (infer: React.ReactNode) => {
+  const takeIcon = (infer: React.ReactNode | { shadow: string }) => {
     if (isStr(infer)) {
       const finded = registry.getDesignerIcon(infer)
       if (finded) {
@@ -50,7 +54,7 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
       })
     } else if (React.isValidElement(infer)) {
       if (infer.type === 'svg') {
-        return React.cloneElement(infer, {
+        return React.cloneElement(infer as React.ReactElement<any>, {
           height,
           width,
           fill: 'currentColor',
@@ -101,8 +105,8 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
         React.isValidElement(tooltip) || isStr(tooltip)
           ? {}
           : isObj(tooltip)
-          ? tooltip
-          : {}
+            ? tooltip
+            : {}
       return (
         <Tooltip {...props} title={title}>
           {children}
@@ -122,7 +126,7 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
       }}
     >
       {takeIcon(props.infer)}
-    </span>
+    </span>,
   )
 })
 

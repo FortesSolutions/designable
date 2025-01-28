@@ -1,5 +1,5 @@
-import { InputNumber } from 'antd'
 import { createPolyInput } from '../PolyInput'
+import { InputNumber } from 'antd'
 
 const takeNumber = (value: any) => {
   const num = String(value)

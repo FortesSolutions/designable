@@ -1,6 +1,6 @@
-import { ICustomEvent } from '@designable/shared'
 import { ITreeNode, TreeNode } from '../../models'
 import { IEngineContext } from '../../types'
+import { ICustomEvent } from '@designable/shared'
 
 export interface IFromNodeEventData {
   //事件发生的数据源

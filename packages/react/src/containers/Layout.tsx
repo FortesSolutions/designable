@@ -1,10 +1,13 @@
-import React, { useContext, Fragment, useRef, useLayoutEffect } from 'react'
-import { each } from '@designable/shared'
+import React, { Fragment, useContext, useLayoutEffect, useRef } from 'react'
+
 import { DesignerLayoutContext } from '../context'
 import { IDesignerLayoutProps } from '../types'
+import { each } from '@designable/shared'
 import cls from 'classnames'
 
-export const Layout: React.FC<IDesignerLayoutProps> = (props) => {
+export const Layout: React.FC<React.PropsWithChildren<IDesignerLayoutProps>> = (
+  props,
+) => {
   const layout = useContext(DesignerLayoutContext)
   const ref = useRef<HTMLDivElement>()
 

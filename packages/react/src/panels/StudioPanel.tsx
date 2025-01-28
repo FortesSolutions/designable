@@ -1,7 +1,9 @@
 import React from 'react'
-import { usePrefix, usePosition } from '../hooks'
+
 import { Layout } from '../containers'
+import { usePosition, usePrefix } from '../hooks'
 import cls from 'classnames'
+
 export interface IStudioPanelProps {
   style?: React.CSSProperties
   className?: string
@@ -12,11 +14,9 @@ export interface IStudioPanelProps {
   position?: React.ComponentProps<typeof Layout>['position']
 }
 
-const StudioPanelInternal: React.FC<IStudioPanelProps> = ({
-  logo,
-  actions,
-  ...props
-}) => {
+const StudioPanelInternal: React.FC<
+  React.PropsWithChildren<IStudioPanelProps>
+> = ({ logo, actions, ...props }) => {
   const prefix = usePrefix('main-panel')
   const position = usePosition()
   const classNameBase = cls('root', position, props.className)

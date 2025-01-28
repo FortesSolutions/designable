@@ -1,18 +1,19 @@
 import { isArr } from '@designable/shared'
 import { untracked } from '@formily/reactive'
-import { DEFAULT_DRIVERS, DEFAULT_EFFECTS, DEFAULT_SHORTCUTS } from './presets'
+
+import { mergeLocales } from './internals'
 import { Engine, TreeNode } from './models'
+import { DEFAULT_DRIVERS, DEFAULT_EFFECTS, DEFAULT_SHORTCUTS } from './presets'
 import {
-  IEngineProps,
-  IResourceCreator,
-  IBehaviorCreator,
-  IDesignerLocales,
-  IResource,
   IBehavior,
+  IBehaviorCreator,
   IBehaviorHost,
+  IDesignerLocales,
+  IEngineProps,
+  IResource,
+  IResourceCreator,
   IResourceHost,
 } from './types'
-import { mergeLocales } from './internals'
 
 export const isBehaviorHost = (val: any): val is IBehaviorHost =>
   val?.Behavior && isBehaviorList(val.Behavior)
@@ -82,6 +83,6 @@ export const createDesigner = (props: IEngineProps<Engine> = {}) => {
         effects: [...effects, ...DEFAULT_EFFECTS],
         drivers: [...drivers, ...DEFAULT_DRIVERS],
         shortcuts: [...shortcuts, ...DEFAULT_SHORTCUTS],
-      })
+      }),
   )
 }

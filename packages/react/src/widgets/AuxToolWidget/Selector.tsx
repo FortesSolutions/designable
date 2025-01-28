@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { TreeNode } from '@designable/core'
-import { useHover, useSelection, usePrefix } from '../../hooks'
+import React, { useEffect, useRef, useState } from 'react'
+
+import { useHover, usePrefix, useSelection } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
-import { Button } from 'antd'
+import { TreeNode } from '@designable/core'
 import { observer } from '@formily/reactive-react'
+import { Button } from 'antd'
 
 const useMouseHover = <T extends { current: HTMLElement }>(
   ref: T,
   enter?: () => void,
-  leave?: () => void
+  leave?: () => void,
 ) => {
   useEffect(() => {
     let timer = null
@@ -100,7 +101,7 @@ export const Selector: React.FC<ISelectorProps> = observer(({ node }) => {
     },
     () => {
       setExpand(false)
-    }
+    },
   )
 
   return (

@@ -1,8 +1,9 @@
 import React from 'react'
-import { useCursor, usePrefix, useViewport, useOperation } from '../../hooks'
-import { observer } from '@formily/reactive-react'
+
+import { useCursor, useOperation, usePrefix, useViewport } from '../../hooks'
 import { CursorDragType, CursorStatus } from '@designable/core'
 import { calcRectByStartEndPoint } from '@designable/shared'
+import { observer } from '@formily/reactive-react'
 import cls from 'classnames'
 
 export const FreeSelection = observer(() => {
@@ -23,7 +24,7 @@ export const FreeSelection = observer(() => {
       startDragPoint,
       currentPoint,
       viewport.dragScrollXDelta,
-      viewport.dragScrollYDelta
+      viewport.dragScrollYDelta,
     )
     const baseStyle: React.CSSProperties = {
       position: 'absolute',

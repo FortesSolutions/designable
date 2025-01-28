@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
-import { useTransformHelper, useCursor, usePrefix } from '../../hooks'
-import { observer } from '@formily/reactive-react'
+
+import { useCursor, usePrefix, useTransformHelper } from '../../hooks'
 import { CursorStatus } from '@designable/core'
 import { ILineSegment, calcRectOfAxisLineSegment } from '@designable/shared'
+import { observer } from '@formily/reactive-react'
 
 export const SpaceBlock = observer(() => {
   const cursor = useCursor()
@@ -85,7 +86,7 @@ export const SpaceBlock = observer(() => {
               </div>
             </Fragment>
           )
-        }
+        },
       )}
       {transformHelper.thresholdSpaceBlocks.map(({ rect }, key) => {
         return (

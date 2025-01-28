@@ -59,7 +59,7 @@ const InlineLayoutTagNames = new Set([
 
 export const calcElementOuterWidth = (
   innerWidth: number,
-  style: CSSStyleDeclaration
+  style: CSSStyleDeclaration,
 ) => {
   return (
     innerWidth +
@@ -115,7 +115,7 @@ export const calcElementTranslate = (element: HTMLElement) => {
   if (transform) {
     const [x, y] = transform
       .match(
-        /translate(?:3d)?\(\s*([-\d.]+)[a-z]+?[\s,]+([-\d.]+)[a-z]+?(?:[\s,]+([-\d.]+))?[a-z]+?\s*\)/
+        /translate(?:3d)?\(\s*([-\d.]+)[a-z]+?[\s,]+([-\d.]+)[a-z]+?(?:[\s,]+([-\d.]+))?[a-z]+?\s*\)/,
       )
       ?.slice(1, 3) ?? [0, 0]
 

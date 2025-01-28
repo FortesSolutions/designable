@@ -1,5 +1,6 @@
-import { parse } from '@babel/parser'
 import { getNpmCDNRegistry } from '../../registry'
+import { parse } from '@babel/parser'
+
 interface IPrettierModule {
   default: {
     format(
@@ -7,7 +8,7 @@ interface IPrettierModule {
       options: {
         semi?: boolean
         parser?: (code: string) => any
-      }
+      },
     ): string
   }
 }
@@ -20,7 +21,7 @@ export const format = async (language: string, source: string) => {
   cache.prettier =
     cache.prettier ||
     new Function(
-      `return import("${getNpmCDNRegistry()}/prettier@2.x/esm/standalone.mjs")`
+      `return import("${getNpmCDNRegistry()}/prettier@2.x/esm/standalone.mjs")`,
     )()
   return cache.prettier.then((module) => {
     if (

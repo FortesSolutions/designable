@@ -1,6 +1,7 @@
-import { EventDriver } from '@designable/shared'
-import { Engine } from '../models/Engine'
 import { MouseMoveEvent } from '../events'
+import { Engine } from '../models/Engine'
+import { EventDriver } from '@designable/shared'
+
 export class MouseMoveDriver extends EventDriver<Engine> {
   request = null
 
@@ -15,7 +16,7 @@ export class MouseMoveDriver extends EventDriver<Engine> {
           pageY: e.pageY,
           target: e.target,
           view: e.view,
-        })
+        }),
       )
     })
   }

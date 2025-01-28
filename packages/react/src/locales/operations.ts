@@ -15,7 +15,7 @@ export default {
       from_node: '子树更新',
     },
   },
-  'en-US': {
+  'en-GB': {
     operations: {
       default_state: 'Default State',
       append_node: 'Append Node',
@@ -27,6 +27,22 @@ export default {
       insert_children: 'Insert Node Children',
       update_children: 'Update Children',
       remove_node: 'Remove Node',
+      wrap_node: 'Wrap Node',
+      from_node: 'Update Child Tree',
+    },
+  },
+  'nl-NL': {
+    operations: {
+      default_state: 'Begin staat',
+      append_node: 'Voeg Node toe',
+      prepend_node: 'Voeg Node toe hiervoor',
+      clone_node: 'Kopieer Node',
+      update_node_props: 'Update Node Eigenschappen',
+      insert_after: 'Insert Node After',
+      insert_before: 'Insert Node Before',
+      insert_children: 'Insert Node Children',
+      update_children: 'Update Children',
+      remove_node: 'Verwijder Node',
       wrap_node: 'Wrap Node',
       from_node: 'Update Child Tree',
     },

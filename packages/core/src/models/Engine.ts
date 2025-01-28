@@ -1,10 +1,11 @@
 import { IEngineProps } from '../types'
-import { ITreeNode, TreeNode } from './TreeNode'
-import { Workbench } from './Workbench'
+import { Event, globalThisPolyfill, uid } from '@designable/shared'
+
 import { Cursor } from './Cursor'
 import { Keyboard } from './Keyboard'
 import { Screen, ScreenType } from './Screen'
-import { Event, uid, globalThisPolyfill } from '@designable/shared'
+import { ITreeNode, TreeNode } from './TreeNode'
+import { Workbench } from './Workbench'
 
 /**
  * 设计器引擎

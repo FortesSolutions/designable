@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
+
+import { usePrefix } from '../hooks'
+import { IconWidget, TextWidget } from '../widgets'
 import { isValid } from '@designable/shared'
 import cls from 'classnames'
-import { IconWidget, TextWidget } from '../widgets'
-import { usePrefix } from '../hooks'
 
 export interface ICompositePanelProps {
   direction?: 'left' | 'right'
@@ -24,7 +25,7 @@ export interface ICompositePanelItemProps {
 }
 
 const parseItems = (
-  children: React.ReactNode
+  children: React.ReactNode,
 ): React.PropsWithChildren<ICompositePanelItemProps>[] => {
   const items = []
   React.Children.forEach(children, (child, index) => {
@@ -37,7 +38,7 @@ const parseItems = (
 
 const findItem = (
   items: React.PropsWithChildren<ICompositePanelItemProps>[],
-  key: string | number
+  key: string | number,
 ) => {
   for (let index = 0; index < items.length; index++) {
     const item = items[index]
@@ -51,16 +52,18 @@ const getDefaultKey = (children: React.ReactNode) => {
   return items?.[0].key
 }
 
-export const CompositePanel: React.FC<ICompositePanelProps> & {
-  Item: React.FC<ICompositePanelItemProps>
+export const CompositePanel: React.FC<
+  React.PropsWithChildren<ICompositePanelProps>
+> & {
+  Item: React.FC<React.PropsWithChildren<ICompositePanelItemProps>>
 } = (props) => {
   const prefix = usePrefix('composite-panel')
   const [activeKey, setActiveKey] = useState<string | number>(
-    props.defaultActiveKey ?? getDefaultKey(props.children)
+    props.defaultActiveKey ?? getDefaultKey(props.children),
   )
   const activeKeyRef = useRef(null)
   const [pinning, setPinning] = useState(props.defaultPinning ?? false)
-  const [visible, setVisible] = useState(props.defaultOpen ?? true)
+  const [open, setVisible] = useState(props.defaultOpen ?? true)
   const items = parseItems(props.children)
   const currentItem = findItem(items, activeKey)
   const content = currentItem?.children
@@ -76,7 +79,7 @@ export const CompositePanel: React.FC<ICompositePanelProps> & {
   }, [props.activeKey])
 
   const renderContent = () => {
-    if (!content || !visible) return
+    if (!content || !open) return
     return (
       <div
         className={cls(prefix + '-tabs-content', {
@@ -162,7 +165,7 @@ export const CompositePanel: React.FC<ICompositePanelProps> & {
               onClick={(e: any) => {
                 if (shape === 'tab') {
                   if (activeKey === item.key) {
-                    setVisible(!visible)
+                    setVisible(!open)
                   } else {
                     setVisible(true)
                   }

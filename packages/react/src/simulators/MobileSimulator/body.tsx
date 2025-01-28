@@ -1,6 +1,7 @@
-import { observer } from '@formily/reactive-react'
 import React from 'react'
-import { useScreen, usePrefix, useTheme } from '../../hooks'
+
+import { usePrefix, useScreen, useTheme } from '../../hooks'
+import { observer } from '@formily/reactive-react'
 
 export interface IMobileBodyProps {}
 

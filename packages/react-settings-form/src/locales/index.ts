@@ -1,6 +1,7 @@
 import { GlobalRegistry } from '@designable/core'
-import zhCN from './zh-CN'
-import enUS from './en-US'
-import koKR from './ko-KR'
 
-GlobalRegistry.registerDesignerLocales(zhCN, enUS, koKR)
+import enGB from './en-GB'
+import koKR from './ko-KR'
+import zhCN from './zh-CN'
+
+GlobalRegistry.registerDesignerLocales(zhCN, enGB, koKR)

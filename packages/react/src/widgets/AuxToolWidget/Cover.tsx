@@ -1,14 +1,16 @@
 import React, { Fragment } from 'react'
+
 import {
-  useViewport,
-  useMoveHelper,
   useCursor,
-  useValidNodeOffsetRect,
+  useMoveHelper,
   usePrefix,
+  useValidNodeOffsetRect,
+  useViewport,
 } from '../../hooks'
+import { ClosestPosition, CursorStatus, TreeNode } from '@designable/core'
 import { observer } from '@formily/reactive-react'
-import { CursorStatus, ClosestPosition, TreeNode } from '@designable/core'
 import cls from 'classnames'
+
 interface ICoverRectProps {
   node: TreeNode
   dragging?: boolean
@@ -52,7 +54,7 @@ export const Cover = observer(() => {
     if (
       !viewportMoveHelper.closestNode ||
       !viewportMoveHelper.closestNode?.allowAppend(
-        viewportMoveHelper.dragNodes
+        viewportMoveHelper.dragNodes,
       ) ||
       viewportMoveHelper.viewportClosestDirection !== ClosestPosition.Inner
     )

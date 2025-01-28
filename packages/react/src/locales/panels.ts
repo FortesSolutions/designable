@@ -7,12 +7,20 @@ export default {
       History: '历史记录',
     },
   },
-  'en-US': {
+  'en-GB': {
     panels: {
       Component: 'Component',
       OutlinedTree: 'Outlined Tree',
       PropertySettings: 'Property Settings',
       History: 'History',
+    },
+  },
+  'nl-NL': {
+    panels: {
+      Component: 'Componenten',
+      OutlinedTree: 'Boomstructuur',
+      PropertySettings: 'Eigenschappen',
+      History: 'Geschiedenis',
     },
   },
   'ko-KR': {

@@ -1,9 +1,10 @@
-import { observable, define, action } from '@formily/reactive'
-import { KeyCode } from '@designable/shared'
-import { Engine } from './Engine'
-import { Shortcut } from './Shortcut'
 import { AbstractKeyboardEvent } from '../events/keyboard/AbstractKeyboardEvent'
 import { IEngineContext } from '../types'
+import { KeyCode } from '@designable/shared'
+import { action, define, observable } from '@formily/reactive'
+
+import { Engine } from './Engine'
+import { Shortcut } from './Shortcut'
 
 const Modifiers: [string, KeyCode][] = [
   ['metaKey', KeyCode.Meta],
@@ -52,7 +53,7 @@ export class Keyboard {
 
   excludes(key: KeyCode) {
     this.sequence = this.sequence.filter(
-      (code) => !Shortcut.matchCode(key, code)
+      (code) => !Shortcut.matchCode(key, code),
     )
   }
 

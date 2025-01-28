@@ -1,12 +1,13 @@
 import {
-  calcRectOfAxisLineSegment,
   ILineSegment,
   IPoint,
-  calcOffsetOfSnapLineSegmentToEdge,
   Rect,
+  calcOffsetOfSnapLineSegmentToEdge,
+  calcRectOfAxisLineSegment,
 } from '@designable/shared'
-import { TreeNode } from './TreeNode'
+
 import { TransformHelper } from './TransformHelper'
+import { TreeNode } from './TreeNode'
 
 export type ISnapLineType = 'ruler' | 'space-block' | 'normal'
 

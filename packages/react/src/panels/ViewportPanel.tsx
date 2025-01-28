@@ -1,7 +1,12 @@
 import React from 'react'
-import { WorkspacePanel, IWorkspaceItemProps } from './WorkspacePanel'
+
 import { Simulator } from '../containers'
-export const ViewportPanel: React.FC<IWorkspaceItemProps> = (props) => {
+
+import { IWorkspaceItemProps, WorkspacePanel } from './WorkspacePanel'
+
+export const ViewportPanel: React.FC<
+  React.PropsWithChildren<IWorkspaceItemProps>
+> = (props) => {
   return (
     <WorkspacePanel.Item {...props} flexable>
       <Simulator>{props.children}</Simulator>
