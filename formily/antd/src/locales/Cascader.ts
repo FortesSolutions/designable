@@ -19,7 +19,7 @@ export const Cascader = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Cascader',
     settings: {
       'x-component-props': {

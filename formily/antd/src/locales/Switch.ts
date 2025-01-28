@@ -2,7 +2,7 @@ export const Switch = {
   'zh-CN': {
     title: '开关',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Switch',
   },
   'ko-KR': {

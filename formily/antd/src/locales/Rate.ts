@@ -9,7 +9,7 @@ export const Rate = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Rate',
     settings: {
       'x-component-props': {

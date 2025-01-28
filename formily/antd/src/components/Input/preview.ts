@@ -1,10 +1,12 @@
 import React from 'react'
-import { Input as FormilyInput } from '@formily/antd'
+
+import { AllLocales } from '../../locales'
+import { AllSchemas } from '../../schemas'
+import { createFieldSchema } from '../Field'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { createFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
+
+import { Input as FormilyInput } from '@fortes/formily'
 
 export const Input: DnFC<React.ComponentProps<typeof FormilyInput>> =
   FormilyInput

@@ -12,7 +12,7 @@ export const TextArea = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'TextArea',
     settings: {
       'x-component-props': {

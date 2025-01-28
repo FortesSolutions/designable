@@ -24,7 +24,7 @@ export const ArrayTable = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Array Table',
     addSortHandle: 'Add Sort Handle',
     addColumn: 'Add Column',
@@ -91,7 +91,7 @@ export const ArrayTableColumn = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Column',
     settings: {
       'x-component-props': {

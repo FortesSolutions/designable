@@ -1,10 +1,12 @@
 import React from 'react'
-import { DatePicker as FormilyDatePicker } from '@formily/antd'
+
+import { AllLocales } from '../../locales'
+import { AllSchemas } from '../../schemas'
+import { createFieldSchema } from '../Field'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { createFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
+
+import { DatePicker as FormilyDatePicker } from '@fortes/formily'
 
 export const DatePicker: DnFC<React.ComponentProps<typeof FormilyDatePicker>> =
   FormilyDatePicker

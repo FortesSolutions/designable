@@ -17,7 +17,7 @@ export const FormTab = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Tabs',
     addTabPane: 'Add Panel',
     settings: {
@@ -64,7 +64,7 @@ export const FormTabPane = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Tab Panel',
     settings: {
       'x-component-props': {

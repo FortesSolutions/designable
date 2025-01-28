@@ -15,7 +15,7 @@ export const FormGrid = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Grid',
     addGridColumn: 'Add Grid Column',
     settings: {
@@ -58,7 +58,7 @@ export const FormGridColumn = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Grid Column',
     settings: {
       'x-component-props': {

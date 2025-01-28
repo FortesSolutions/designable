@@ -11,7 +11,7 @@ export const Transfer = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Transfer',
     settings: {
       'x-component-props': {
@@ -20,6 +20,18 @@ export const Transfer = {
         titles: { title: 'Titles', tooltip: 'Format：string[]' },
         showSearchAll: 'Show Search All',
         filterOption: 'Filter Option',
+      },
+    },
+  },
+  'nl-NL': {
+    title: 'Verplaatsen',
+    settings: {
+      'x-component-props': {
+        oneWay: 'Een weg',
+        operations: { title: 'Operaties', tooltip: 'Format：string[]' },
+        titles: { title: 'Titels', tooltip: 'Format：string[]' },
+        showSearchAll: 'Toon Zoek alles',
+        filterOption: 'Filter Optie',
       },
     },
   },

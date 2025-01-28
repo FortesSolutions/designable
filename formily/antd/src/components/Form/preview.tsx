@@ -1,12 +1,15 @@
 import React, { useMemo } from 'react'
+
+import { AllLocales } from '../../locales'
+import { AllSchemas } from '../../schemas'
 import { createBehavior, createResource } from '@designable/core'
+import { DnFC, usePrefix } from '@designable/react'
 import { createForm } from '@formily/core'
 import { observer } from '@formily/react'
-import { Form as FormilyForm } from '@formily/antd'
-import { usePrefix, DnFC } from '@designable/react'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
-import './styles.less'
+
+import { Form as FormilyForm } from '@fortes/formily'
+
+// import './styles.less'
 
 export const Form: DnFC<React.ComponentProps<typeof FormilyForm>> = observer(
   (props) => {
@@ -57,7 +60,7 @@ Form.Behavior = createBehavior({
 })
 
 Form.Resource = createResource({
-  title: { 'zh-CN': '表单', 'en-US': 'Form' },
+  title: { 'zh-CN': '表单', 'en-GB': 'Form' },
   icon: 'FormLayoutSource',
   elements: [
     {

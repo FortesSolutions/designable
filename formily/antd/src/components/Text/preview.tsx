@@ -1,16 +1,18 @@
 import React from 'react'
+
+import { AllLocales } from '../../locales'
+import { AllSchemas } from '../../schemas'
+import { createVoidFieldSchema } from '../Field'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { createVoidFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
 import cls from 'classnames'
-import './styles.less'
+
+// import './styles.less'
 
 export interface IDesignableTextProps {
   value?: string
   content?: string
-  mode?: 'normal' | 'h1' | 'h2' | 'h3' | 'p'
+  mode?: 'normal' | 'strong' | 'h1' | 'h2' | 'h3' | 'h4' | 'p'
   style?: React.CSSProperties
   className?: string
 }

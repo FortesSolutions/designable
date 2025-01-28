@@ -17,7 +17,7 @@ export const Input = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Input',
     settings: {
       'x-component-props': {

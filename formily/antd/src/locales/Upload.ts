@@ -25,7 +25,7 @@ export const Upload = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Upload',
     settings: {
       'x-component-props': {
@@ -79,7 +79,7 @@ export const UploadDragger = createLocales(Upload, {
       'x-component-props': {},
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'UploadDragger',
     settings: {
       'x-component-props': {},

@@ -2,7 +2,7 @@ export const Void = {
   'zh-CN': {
     title: '虚拟容器',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Void',
   },
   'ko-KR': {

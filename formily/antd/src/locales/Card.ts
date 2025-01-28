@@ -13,12 +13,26 @@ export const Card = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Card',
     settings: {
       'x-component-props': {
         type: 'Type',
         title: 'Title',
+        extra: 'Extra',
+        cardTypes: [
+          { label: 'Inner', value: 'inner' },
+          { label: 'Default', value: '' },
+        ],
+      },
+    },
+  },
+  'nl-NL': {
+    title: 'Kaart',
+    settings: {
+      'x-component-props': {
+        type: 'Type',
+        title: 'Titel',
         extra: 'Extra',
         cardTypes: [
           { label: 'Inner', value: 'inner' },

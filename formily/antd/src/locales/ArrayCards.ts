@@ -1,4 +1,5 @@
 import { createLocales } from '@designable/core'
+
 import { Card } from './Card'
 
 export const ArrayCards = createLocales(Card, {
@@ -7,7 +8,7 @@ export const ArrayCards = createLocales(Card, {
     addIndex: '添加索引',
     addOperation: '添加操作',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Array Cards',
     addIndex: 'Add Index',
     addOperation: 'Add Operations',

@@ -1,4 +1,5 @@
 export * from './Component'
+export * from './Alert'
 export * from './Field'
 export * from './Input'
 export * from './Select'

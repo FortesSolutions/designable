@@ -1,10 +1,11 @@
 import React from 'react'
-import { Switch as AntdSwitch } from 'antd'
+
+import { AllLocales } from '../../locales'
+import { AllSchemas } from '../../schemas'
+import { createFieldSchema } from '../Field'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { createFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
+import { Switch as AntdSwitch } from 'antd'
 
 export const Switch: DnFC<React.ComponentProps<typeof AntdSwitch>> = AntdSwitch
 

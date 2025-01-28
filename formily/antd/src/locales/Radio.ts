@@ -8,7 +8,7 @@ export const RadioGroup = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Radio',
     settings: {
       'x-component-props': {

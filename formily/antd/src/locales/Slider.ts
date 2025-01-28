@@ -23,7 +23,7 @@ export const Slider = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Slider',
     settings: {
       'x-component-props': {

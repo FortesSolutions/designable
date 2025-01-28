@@ -30,7 +30,7 @@ export const ArrayRemove = {
   'zh-CN': {
     title: '删除按钮',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Remove',
   },
   'ko-KR': {
@@ -42,7 +42,7 @@ export const ArrayMoveUp = {
   'zh-CN': {
     title: '上移按钮',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Move Up',
   },
   'ko-KR': {
@@ -54,7 +54,7 @@ export const ArrayMoveDown = {
   'zh-CN': {
     title: '下移按钮',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Move Down',
   },
   'ko-KR': {
@@ -66,7 +66,7 @@ export const ArrayIndex = {
   'zh-CN': {
     title: '索引标识',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Index',
   },
   'ko-KR': {
@@ -78,7 +78,7 @@ export const ArraySortHandle = {
   'zh-CN': {
     title: '排序标识',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Sort Handle',
   },
   'ko-KR': {

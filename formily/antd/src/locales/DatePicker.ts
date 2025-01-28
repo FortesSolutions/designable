@@ -25,7 +25,7 @@ export const DatePicker = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'DatePicker',
     settings: {
       'x-component-props': {
@@ -79,7 +79,7 @@ export const DateRangePicker = createLocales(DatePicker, {
   'zh-CN': {
     title: '日期范围',
   },
-  'en-US': {
+  'en-GB': {
     title: 'DateRange',
   },
   'ko-KR': {

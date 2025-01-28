@@ -35,7 +35,7 @@ export const FormLayout = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Form Layout',
     settings: {
       'x-component-props': {

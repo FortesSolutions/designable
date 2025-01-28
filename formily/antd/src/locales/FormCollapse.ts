@@ -11,7 +11,7 @@ export const FormCollapse = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Collapse',
     addCollapsePanel: 'Add Panel',
     settings: {
@@ -54,7 +54,7 @@ export const FormCollapsePanel = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Panel',
     settings: {
       'x-component-props': {

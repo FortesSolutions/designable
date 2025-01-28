@@ -25,7 +25,7 @@ export const NumberPicker = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'NumberInput',
     settings: {
       'x-component-props': {

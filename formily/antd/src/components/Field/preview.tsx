@@ -1,27 +1,29 @@
 import React from 'react'
-import { FormPath } from '@formily/core'
-import { toJS } from '@formily/reactive'
-import {
-  ArrayField,
-  Field as InternalField,
-  ObjectField,
-  VoidField,
-  observer,
-  ISchema,
-  Schema,
-} from '@formily/react'
-import { FormItem } from '@formily/antd'
-import { each, reduce } from '@formily/shared'
-import { createBehavior } from '@designable/core'
-import {
-  useDesigner,
-  useTreeNode,
-  useComponents,
-  DnFC,
-} from '@designable/react'
-import { isArr, isStr } from '@designable/shared'
+
 import { Container } from '../../common/Container'
 import { AllLocales } from '../../locales'
+import { createBehavior } from '@designable/core'
+import {
+  DnFC,
+  useComponents,
+  useDesigner,
+  useTreeNode,
+} from '@designable/react'
+import { isArr, isStr } from '@designable/shared'
+import { FormPath } from '@formily/core'
+import {
+  ArrayField,
+  ISchema,
+  Field as InternalField,
+  ObjectField,
+  Schema,
+  VoidField,
+  observer,
+} from '@formily/react'
+import { toJS } from '@formily/reactive'
+import { each, reduce } from '@formily/shared'
+
+import { FormItem } from '@fortes/formily'
 
 Schema.silent(true)
 
@@ -33,6 +35,7 @@ const SchemaStateMap = {
   readOnly: 'readOnly',
   writeOnly: 'editable',
   required: 'required',
+  'x-show-in-list': 'showInList',
   'x-content': 'content',
   'x-value': 'value',
   'x-editable': 'editable',

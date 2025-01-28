@@ -13,7 +13,7 @@ export const Space = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Space',
     settings: {
       'x-component-props': {

@@ -1,4 +1,5 @@
 import { createLocales } from '@designable/core'
+
 import { Component } from './Component'
 
 export const Form = createLocales(Component, {
@@ -36,7 +37,7 @@ export const Form = createLocales(Component, {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Form',
     settings: {
       labelCol: 'Label Col',

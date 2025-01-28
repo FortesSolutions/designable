@@ -16,7 +16,7 @@ export const Component = {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     settings: {
       style: {
         width: 'Width',

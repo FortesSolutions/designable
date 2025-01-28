@@ -1,21 +1,22 @@
 import React, { Fragment, useState } from 'react'
-import { observer } from '@formily/react'
-import { Tabs } from 'antd'
-import { TabsProps, TabPaneProps } from 'antd/lib/tabs'
-import { TreeNode, createBehavior, createResource } from '@designable/core'
-import {
-  useNodeIdProps,
-  useTreeNode,
-  TreeNodeWidget,
-  DroppableWidget,
-  DnFC,
-} from '@designable/react'
+
 import { LoadTemplate } from '../../common/LoadTemplate'
 import { useDropTemplate } from '../../hooks'
-import { createVoidFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
 import { AllLocales } from '../../locales'
+import { AllSchemas } from '../../schemas'
 import { matchComponent } from '../../shared'
+import { createVoidFieldSchema } from '../Field'
+import { TreeNode, createBehavior, createResource } from '@designable/core'
+import {
+  DnFC,
+  DroppableWidget,
+  TreeNodeWidget,
+  useNodeIdProps,
+  useTreeNode,
+} from '@designable/react'
+import { observer } from '@formily/react'
+import { Tabs } from 'antd'
+import { TabPaneProps, TabsProps } from 'antd/lib/tabs'
 
 const parseTabs = (parent: TreeNode) => {
   const tabs: TreeNode[] = []
@@ -34,7 +35,7 @@ const getCorrectActiveKey = (activeKey: string, tabs: TreeNode[]) => {
 }
 
 export const FormTab: DnFC<TabsProps> & {
-  TabPane?: React.FC<TabPaneProps>
+  TabPane?: React.FC<React.PropsWithChildren<TabPaneProps>>
 } = observer((props) => {
   const [activeKey, setActiveKey] = useState<string>()
   const nodeId = useNodeIdProps()

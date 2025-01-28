@@ -1,4 +1,4 @@
-export const Text = {
+export const Alert = {
   'zh-CN': {
     title: '文本',
     settings: {
@@ -6,19 +6,20 @@ export const Text = {
         content: '文本内容',
         mode: {
           title: '文本类型',
-          dataSource: ['Normal', 'Strong', 'H1', 'H2', 'H3', 'H4', 'Paragraph'],
+          dataSource: ['Success', 'Info', 'Warning', 'Error'],
         },
       },
     },
   },
   'en-GB': {
-    title: 'Text',
+    title: 'Alert',
     settings: {
       'x-component-props': {
-        content: 'Text Content',
-        mode: {
-          title: 'Text Mode',
-          dataSource: ['Normal', 'Strong', 'H1', 'H2', 'H3', 'H4', 'Paragraph'],
+        message: 'Alert Message',
+        showIcon: 'Show icon',
+        type: {
+          title: 'Alert Type',
+          dataSource: ['Success', 'Info', 'Warning', 'Error'],
         },
       },
     },
@@ -30,7 +31,7 @@ export const Text = {
         content: '텍스트 내용',
         mode: {
           title: '텍스트 모드',
-          dataSource: ['Normal', 'Strong', 'H1', 'H2', 'H3', 'H4', 'Paragraph'],
+          dataSource: ['Success', 'Info', 'Warning', 'Error'],
         },
       },
     },

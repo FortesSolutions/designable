@@ -1,10 +1,12 @@
 import React from 'react'
-import { Radio as FormilyRadio } from '@formily/antd'
+
+import { AllLocales } from '../../locales'
+import { AllSchemas } from '../../schemas'
+import { createFieldSchema } from '../Field'
 import { createBehavior, createResource } from '@designable/core'
 import { DnFC } from '@designable/react'
-import { createFieldSchema } from '../Field'
-import { AllSchemas } from '../../schemas'
-import { AllLocales } from '../../locales'
+
+import { Radio as FormilyRadio } from '@fortes/formily'
 
 export const Radio: DnFC<React.ComponentProps<typeof FormilyRadio>> =
   FormilyRadio

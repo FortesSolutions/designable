@@ -1,21 +1,26 @@
 import { ISchema } from '@formily/react'
 
-export const Text: ISchema = {
+export const Alert: ISchema = {
   type: 'object',
   properties: {
-    content: {
+    message: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input.TextArea',
     },
-    mode: {
+    type: {
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Select',
       'x-component-props': {
-        defaultValue: 'normal',
+        defaultValue: 'info',
       },
-      enum: ['normal', 'strong', 'h1', 'h2', 'h3', 'h4', 'p'],
+      enum: ['success', 'info', 'warning', 'error'],
+    },
+    showIcon: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
     },
   },
 }

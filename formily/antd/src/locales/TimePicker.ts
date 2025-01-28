@@ -1,4 +1,5 @@
 import { createLocales } from '@designable/core'
+
 import { DatePicker } from './DatePicker'
 
 export const TimePicker = createLocales(DatePicker, {
@@ -21,7 +22,7 @@ export const TimePicker = createLocales(DatePicker, {
       },
     },
   },
-  'en-US': {
+  'en-GB': {
     title: 'Time Picker',
     settings: {
       'x-component-props': {
@@ -65,7 +66,7 @@ export const TimeRangePicker = createLocales(TimePicker, {
   'zh-CN': {
     title: '时间范围',
   },
-  'en-US': {
+  'en-GB': {
     title: 'Time Range',
   },
   'ko-KR': {

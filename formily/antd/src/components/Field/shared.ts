@@ -1,11 +1,11 @@
-import { ISchema } from '@formily/json-schema'
-import {
-  ReactionsSetter,
-  DataSourceSetter,
-  ValidatorSetter,
-} from '@designable/formily-setters'
+// import {
+//   ReactionsSetter,
+//   DataSourceSetter,
+//   ValidatorSetter,
+// } from '@designable/formily-setters'
 import { FormItemSwitcher } from '../../common/FormItemSwitcher'
 import { AllSchemas } from '../../schemas'
+import { ISchema } from '@formily/json-schema'
 
 export const createComponentSchema = (
   component: ISchema,
@@ -89,6 +89,7 @@ export const createFieldSchema = (
             type: 'string',
             'x-decorator': 'FormItem',
             'x-component': 'Input',
+            'x-component-props': { disabled: true },
           },
           title: {
             type: 'string',
@@ -100,18 +101,28 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'Input.TextArea',
           },
-          'x-display': {
-            type: 'string',
-            enum: ['visible', 'hidden', 'none', ''],
+          required: {
+            type: 'boolean',
             'x-decorator': 'FormItem',
-            'x-component': 'Select',
-            'x-component-props': {
-              defaultValue: 'visible',
-            },
+            'x-component': 'Switch',
           },
+          'x-show-in-list': {
+            type: 'boolean',
+            'x-decorator': 'FormItem',
+            'x-component': 'Switch',
+          },
+          // 'x-display': {
+          //   type: 'string',
+          //   enum: ['visible', 'hidden', 'none', ''],
+          //   'x-decorator': 'FormItem',
+          //   'x-component': 'Select',
+          //   'x-component-props': {
+          //     defaultValue: 'visible',
+          //   },
+          // },
           'x-pattern': {
             type: 'string',
-            enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
+            enum: ['editable', 'disabled', 'readOnly'], // , 'readPretty', ''],
             'x-decorator': 'FormItem',
             'x-component': 'Select',
             'x-component-props': {
@@ -122,23 +133,18 @@ export const createFieldSchema = (
             'x-decorator': 'FormItem',
             'x-component': 'ValueInput',
           },
-          enum: {
-            'x-decorator': 'FormItem',
-            'x-component': DataSourceSetter,
-          },
-          'x-reactions': {
-            'x-decorator': 'FormItem',
-            'x-component': ReactionsSetter,
-          },
-          'x-validator': {
-            type: 'array',
-            'x-component': ValidatorSetter,
-          },
-          required: {
-            type: 'boolean',
-            'x-decorator': 'FormItem',
-            'x-component': 'Switch',
-          },
+          // enum: {
+          //   'x-decorator': 'FormItem',
+          //   'x-component': DataSourceSetter,
+          // },
+          // 'x-reactions': {
+          //   'x-decorator': 'FormItem',
+          //   'x-component': ReactionsSetter,
+          // },
+          // 'x-validator': {
+          //   type: 'array',
+          //   'x-component': ValidatorSetter,
+          // },
         },
       },
       ...createComponentSchema(component, decorator),
@@ -149,7 +155,7 @@ export const createFieldSchema = (
 export const createVoidFieldSchema = (
   component?: ISchema,
   decorator: ISchema = AllSchemas.FormItem
-) => {
+): ISchema => {
   return {
     type: 'object',
     properties: {
@@ -186,28 +192,28 @@ export const createVoidFieldSchema = (
               },
             },
           },
-          'x-display': {
-            type: 'string',
-            enum: ['visible', 'hidden', 'none', ''],
-            'x-decorator': 'FormItem',
-            'x-component': 'Select',
-            'x-component-props': {
-              defaultValue: 'visible',
-            },
-          },
+          // 'x-display': {
+          //   type: 'string',
+          //   enum: ['visible', 'hidden', 'none', ''],
+          //   'x-decorator': 'FormItem',
+          //   'x-component': 'Select',
+          //   'x-component-props': {
+          //     defaultValue: 'visible',
+          //   },
+          // },
           'x-pattern': {
             type: 'string',
-            enum: ['editable', 'disabled', 'readOnly', 'readPretty', ''],
+            enum: ['editable', 'disabled', 'readOnly'], // , 'readPretty', ''],
             'x-decorator': 'FormItem',
             'x-component': 'Select',
             'x-component-props': {
               defaultValue: 'editable',
             },
           },
-          'x-reactions': {
-            'x-decorator': 'FormItem',
-            'x-component': ReactionsSetter,
-          },
+          // 'x-reactions': {
+          //   'x-decorator': 'FormItem',
+          //   'x-component': ReactionsSetter,
+          // },
           'x-decorator': {
             type: 'string',
             'x-decorator': 'FormItem',
